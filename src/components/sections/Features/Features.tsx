@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 type FeatureCard = {
   title: string;
@@ -12,6 +12,7 @@ type FeatureItem = {
   title: string;
   section?: string;
   primary?: boolean;
+  compact?: boolean;
   icon: "analytics" | "sales" | "team" | "stock" | "filter" | "delivery" | "mail" | "channel";
   cards: FeatureCard[];
 };
@@ -55,10 +56,14 @@ const featureItems: FeatureItem[] = [
   { title: "Фильтры", section: "Фильтры", icon: "filter", cards: defaultCards },
   { title: "Категории и подкатегории", icon: "analytics", cards: defaultCards },
   { title: "Смарт-цена", icon: "analytics", cards: defaultCards },
-  { title: "Доставка", icon: "delivery", cards: defaultCards },
-  { title: "Рассылки", icon: "mail", cards: defaultCards },
-  { title: "Каналы", icon: "channel", cards: defaultCards },
+  { title: "Доставка", icon: "delivery", compact: true, cards: defaultCards },
+  { title: "Рассылки", icon: "mail", compact: true, cards: defaultCards },
+  { title: "Каналы", icon: "channel", compact: true, cards: defaultCards },
 ];
+
+function isSectionItem(item: FeatureItem) {
+  return Boolean(item.section);
+}
 
 function FeatureIcon({
   icon,
@@ -146,9 +151,15 @@ function CheckIcon() {
   );
 }
 
-function MenuChevron() {
+function MenuChevron({ expanded = false }: { expanded?: boolean }) {
   return (
-    <span className="features-menu-chevron" aria-hidden="true">
+    <span
+      className={[
+        "features-menu-chevron",
+        expanded ? "features-menu-chevron--expanded" : "",
+      ].join(" ")}
+      aria-hidden="true"
+    >
       <svg viewBox="0 0 24 24" focusable="false">
         <path
           fill="currentColor"
@@ -159,7 +170,7 @@ function MenuChevron() {
   );
 }
 
-function MenuButton({
+function DesktopMenuButton({
   item,
   index,
   active,
@@ -170,7 +181,7 @@ function MenuButton({
   active: boolean;
   onClick: () => void;
 }) {
-  const isSection = Boolean(item.section);
+  const isSection = isSectionItem(item);
   const hasLargeIcon = isSection || item.primary;
   const className = [
     "features-menu-button",
@@ -208,22 +219,18 @@ function MenuButton({
       onClick={onClick}
       data-feature-index={String(index)}
     >
-      {hasLargeIcon ? (
-        <span className="features-menu-icon" aria-hidden="true">
-          <FeatureIcon icon={item.icon} active={active} />
-        </span>
-      ) : (
-        <span className="features-menu-dot" aria-hidden="true" />
-      )}
-      <span>{item.title}</span>
-      {isSection ? <span className="features-menu-chevron" aria-hidden="true">⌄</span> : null}
+      {content}
     </button>
   );
 }
 
 export function Features() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const activeItem = featureItems[activeIndex];
   const activeCards = activeItem.cards;
 
@@ -270,8 +277,47 @@ export function Features() {
     };
   }, []);
 
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!isMobileMenuOpen) {
+        return;
+      }
+
+      const target = event.target as Node | null;
+      if (!target) {
+        return;
+      }
+
+      const clickedMenu = mobileMenuRef.current?.contains(target);
+      const clickedTrigger = mobileTriggerRef.current?.contains(target);
+
+      if (!clickedMenu && !clickedTrigger) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth > 900) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobileMenuOpen]);
+
+  const handleSelectFeature = (index: number) => {
+    setActiveIndex(index);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <section ref={sectionRef} className="features-section container-1920 px-20">
+    <section ref={sectionRef} className="features-section container-1920 px-20" id="features">
       <div className="features-bg-pattern features-reveal" aria-hidden="true" />
       <div className="features-bg-light features-reveal" aria-hidden="true" />
 
@@ -282,21 +328,102 @@ export function Features() {
           <aside className="features-sidebar features-reveal" aria-label="Разделы возможностей">
             <div className="features-menu">
               {featureItems.map((item, index) => (
-                <MenuButton
+                <DesktopMenuButton
                   key={`${item.title}-${index}`}
                   item={item}
                   index={index}
                   active={index === activeIndex}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => handleSelectFeature(index)}
                 />
               ))}
             </div>
             <p className="features-note">
-              CRM, товары, клиенты, склад, аналитика и автоматизация — всё в одной системе.
+              CRM, товары, клиенты, склад, аналитика и автоматизация - всё в одной
+              системе.
             </p>
           </aside>
 
           <div className="features-content features-reveal" key={activeIndex}>
+            <div className="features-mobile-nav">
+              <button
+                ref={mobileTriggerRef}
+                type="button"
+                className={[
+                  "features-mobile-trigger",
+                  isMobileMenuOpen ? "features-mobile-trigger--open" : "",
+                ].join(" ")}
+                aria-expanded={isMobileMenuOpen}
+                aria-haspopup="listbox"
+                aria-controls="features-mobile-menu"
+                onClick={() => setIsMobileMenuOpen((open) => !open)}
+              >
+                <span className="features-mobile-trigger__content">
+                  <span className="features-mobile-trigger__icon" aria-hidden="true">
+                    <FeatureIcon icon={activeItem.icon} active />
+                  </span>
+                  <span className="features-mobile-trigger__label">{activeItem.title}</span>
+                </span>
+                <MenuChevron expanded={isMobileMenuOpen} />
+              </button>
+
+              <div
+                ref={mobileMenuRef}
+                id="features-mobile-menu"
+                className={[
+                  "features-mobile-menu",
+                  isMobileMenuOpen ? "features-mobile-menu--open" : "",
+                ].join(" ")}
+                role="listbox"
+                aria-hidden={!isMobileMenuOpen}
+              >
+                {featureItems.map((item, index) => {
+                  const isSection = isSectionItem(item);
+                  const isActive = index === activeIndex;
+
+                  if (isSection) {
+                    return (
+                      <div className="features-mobile-menu__group" key={`${item.title}-${index}`}>
+                        <span className="features-mobile-menu__group-main">
+                          <span className="features-mobile-menu__icon" aria-hidden="true">
+                            <FeatureIcon icon={item.icon} active={false} />
+                          </span>
+                          <span className="features-mobile-menu__label">{item.title}</span>
+                        </span>
+                        <MenuChevron />
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <button
+                      type="button"
+                      key={`${item.title}-${index}`}
+                      className={[
+                        "features-mobile-option",
+                        item.compact ? "features-mobile-option--compact" : "",
+                        isActive ? "features-mobile-option--active" : "",
+                      ].join(" ")}
+                      onClick={() => handleSelectFeature(index)}
+                      role="option"
+                      aria-selected={isActive}
+                    >
+                      <span className="features-mobile-option__inner">
+                        {item.compact ? (
+                          <span className="features-mobile-menu__icon" aria-hidden="true">
+                            <FeatureIcon icon={item.icon} active={isActive} />
+                          </span>
+                        ) : null}
+                        {!item.compact ? (
+                          <span className="features-mobile-option__dot" aria-hidden="true" />
+                        ) : null}
+                        <span className="features-mobile-menu__label">{item.title}</span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="features-graphic">
               <Image
                 src="/images/features/analytics-dashboard.png"
@@ -309,8 +436,16 @@ export function Features() {
             </div>
 
             <div className="features-card-grid">
-              {activeCards.map((card) => (
-                <article className="features-info-card" key={card.title}>
+              {activeCards.map((card, index) => (
+                <article
+                  className="features-info-card features-card-reveal"
+                  key={card.title}
+                  style={
+                    {
+                      "--features-card-delay": `${0.46 + index * 0.08}s`,
+                    } as CSSProperties
+                  }
+                >
                   <div className="features-info-heading">
                     <span className="features-check">
                       <CheckIcon />

@@ -26,11 +26,6 @@ export function Hero() {
       return;
     }
 
-    if (window.matchMedia("(max-width: 900px)").matches) {
-      void videoRef.current?.play();
-      return;
-    }
-
     const ctx = gsap.context(() => {
       const underlineWidth = "100%";
       const decorativeItems = gsap.utils.toArray<HTMLElement>(".hero-decor-enter");
@@ -57,6 +52,11 @@ export function Hero() {
         autoAlpha: 0,
         width: 0,
       });
+      gsap.set(decorativeItems, { y: 16 });
+      gsap.set(frameItems, { y: 24 });
+      gsap.set(videoGlowItems, { y: 18 });
+      gsap.set(copyItems, { y: 26 });
+      gsap.set(demoRef.current, { y: 44 });
 
       const timeline = gsap.timeline({
         delay: 0.12,
@@ -67,48 +67,49 @@ export function Hero() {
 
       timeline
         .to(decorativeItems, {
+          y: 0,
           autoAlpha: 1,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.08,
+          duration: 0.96,
+          ease: "power2.out",
+          stagger: 0.1,
         })
-        .fromTo(
+        .to(
           copyItems,
-          { y: 24, autoAlpha: 0 },
           {
             y: 0,
             autoAlpha: 1,
-            duration: 0.72,
-            ease: "power3.out",
-            stagger: 0.11,
+            duration: 0.78,
+            ease: "power2.out",
+            stagger: 0.12,
           },
-          "-=0.38",
+          "-=0.52",
         )
         .to(
           frameItems,
           {
+            y: 0,
             autoAlpha: 1,
-            duration: 0.82,
-            ease: "power3.out",
-            stagger: 0.08,
+            duration: 0.9,
+            ease: "power2.out",
+            stagger: 0.09,
           },
-          "-=0.18",
+          "-=0.24",
         )
-        .fromTo(
+        .to(
           demoRef.current,
-          { y: 44, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
-          "-=0.48",
+          { y: 0, autoAlpha: 1, duration: 0.88, ease: "power2.out" },
+          "-=0.56",
         )
         .to(
           videoGlowItems,
           {
+            y: 0,
             autoAlpha: 1,
-            duration: 0.85,
-            ease: "power3.out",
+            duration: 0.92,
+            ease: "power2.out",
             stagger: 0.08,
           },
-          "-=0.18",
+          "-=0.22",
         )
         .to(
           underlineMaskRef.current,
@@ -233,10 +234,13 @@ export function Hero() {
             <video
               ref={videoRef}
               data-hero-video
-              loop
               muted
               playsInline
               preload="auto"
+              onEnded={(event) => {
+                const node = event.currentTarget;
+                node.pause();
+              }}
               className="h-full w-full object-cover"
             >
               <source src="/videos/hero-main-video.mp4" type="video/mp4" />
