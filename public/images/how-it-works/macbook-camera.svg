@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 6.7963 6.8127" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Camera">
+<path id="Ellipse 1" d="M3.39844 0.129883C5.20276 0.130038 6.66596 1.59679 6.66602 3.40625C6.66602 5.21576 5.20279 6.68246 3.39844 6.68262C1.59395 6.68262 0.129883 5.21585 0.129883 3.40625C0.129938 1.59669 1.59399 0.129883 3.39844 0.129883Z" fill="var(--fill-0, #0F0F0F)" stroke="var(--stroke-0, #151515)" stroke-width="0.260621"/>
+<ellipse id="Ellipse 4" cx="3.05823" cy="4.20117" rx="0.792902" ry="0.794815" fill="var(--fill-0, #16181E)"/>
+<ellipse id="Ellipse 3" cx="3.05823" cy="3.06572" rx="0.792902" ry="0.794815" fill="var(--fill-0, #0A0B0D)"/>
+<ellipse id="Ellipse 2" opacity="0.6" cx="3.39804" cy="3.40635" rx="1.13272" ry="1.13545" fill="var(--fill-0, #1F2531)"/>
+</g>
+</svg>

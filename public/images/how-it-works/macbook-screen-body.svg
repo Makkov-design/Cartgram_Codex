@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 869.678 596.869" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Screen body">
+<path id="Body" d="M435.056 1.74268H843.601C857.043 1.74268 867.94 12.6658 867.94 26.1402V595.126H435.056H434.622H1.73849V26.1402C1.73849 12.6658 12.6354 1.74268 26.0773 1.74268H434.622H435.056Z" fill="var(--fill-0, black)"/>
+<path id="Inner border" fill-rule="evenodd" clip-rule="evenodd" d="M843.601 3.48536H26.0773C13.5955 3.48536 3.47697 13.6283 3.47697 26.1402V593.383H866.201V26.1402C866.201 13.6283 856.083 3.48536 843.601 3.48536ZM843.601 1.74268H26.0773C12.6354 1.74268 1.73849 12.6658 1.73849 26.1402V595.126H867.94V26.1402C867.94 12.6658 857.043 1.74268 843.601 1.74268Z" fill="var(--fill-0, #201F24)"/>
+<path id="Outer border" fill-rule="evenodd" clip-rule="evenodd" d="M869.678 596.869H0V26.1402C0 11.7034 11.6752 0 26.0773 0H843.601C858.003 0 869.678 11.7034 869.678 26.1402V596.869ZM843.601 1.74268H26.0773C12.6354 1.74268 1.73849 12.6658 1.73849 26.1402V595.126H867.94V26.1402C867.94 12.6658 857.043 1.74268 843.601 1.74268Z" fill="var(--fill-0, #7D7D7F)"/>
+<path id="Rectangle" d="M4.21252 572.471H865.332V589.027C865.332 590.951 863.776 592.512 861.855 592.512H7.6895C5.76922 592.512 4.21252 590.951 4.21252 589.027V572.471Z" fill="url(#paint0_linear_0_132)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_132" x1="434.187" y1="572.471" x2="434.187" y2="592.512" gradientUnits="userSpaceOnUse">
+<stop stop-color="#222222"/>
+<stop offset="0.0852114" stop-color="#242424"/>
+<stop offset="0.830431" stop-color="#242424"/>
+<stop offset="1" stop-color="#201F24"/>
+</linearGradient>
+</defs>
+</svg>

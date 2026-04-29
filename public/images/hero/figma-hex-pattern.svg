@@ -1,0 +1,18 @@
+<svg width="1920" height="521" viewBox="0 0 1920 521" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect opacity="0.1" width="1920" height="1439" fill="url(#pattern0_1120_6299)"/>
+<defs>
+<pattern id="pattern0_1120_6299" patternUnits="userSpaceOnUse" patternTransform="matrix(80 0 0 140 918.997 672.346)" preserveAspectRatio="none" viewBox="-0.501297 -6.07712 40 70" width="1" height="1">
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(-60 -35)"/>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(-20 -35)"/>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(20 -35)"/>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(-80 0)"/>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(-40 0)"/>
+<g id="pattern0_1120_6299_inner">
+<path d="M39.8969 28.9113L19.8969 40.5L0 29.0887L0.103096 6.08869L20.1031 -5.5L40 5.91131L39.8969 28.9113Z" stroke="white"/>
+</g>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(-60 35)"/>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(-20 35)"/>
+<use xlink:href="#pattern0_1120_6299_inner" transform="translate(20 35)"/>
+</pattern>
+</defs>
+</svg>
