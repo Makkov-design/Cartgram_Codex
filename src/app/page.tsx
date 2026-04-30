@@ -1,4 +1,5 @@
 import { Header } from "@/components/layout/Header/Header";
+import { Additionals } from "@/components/sections/Additionals/Additionals";
 import { Features } from "@/components/sections/Features/Features";
 import { Hero } from "@/components/sections/Hero/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks/HowItWorks";
@@ -42,6 +43,10 @@ export default function Home() {
 
       <section id="prices" className="overflow-x-clip">
         <Prices />
+      </section>
+
+      <section id="additionals" className="overflow-x-clip">
+        <Additionals />
       </section>
 
       {placeholderSections.map((id) => (
