@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/buttons/Button";
 
@@ -129,134 +130,28 @@ const additionals: AdditionalItem[] = [
   },
 ];
 
-function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
-  const className = "additionals-card__icon-svg";
+const iconMap: Record<AdditionalItem["icon"], string> = {
+  theme: "/images/additionals/icon-theme-fill.svg",
+  launch: "/images/additionals/icon-launch.svg",
+  traffic: "/images/additionals/icon-traffic.svg",
+  warehouse: "/images/additionals/icon-warehouse.svg",
+  staff: "/images/additionals/icon-staff.svg",
+  tasks: "/images/additionals/icon-tasks.svg",
+  api: "/images/additionals/icon-api.svg",
+  custom: "/images/additionals/icon-custom.svg",
+};
 
-  switch (type) {
-    case "theme":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path
-            d="M20 19.5h24a4.5 4.5 0 014.5 4.5v16a4.5 4.5 0 01-4.5 4.5H20A4.5 4.5 0 0115.5 40V24a4.5 4.5 0 014.5-4.5z"
-            stroke="currentColor"
-            strokeWidth="2.4"
-          />
-          <circle cx="25.5" cy="28" r="4.2" stroke="currentColor" strokeWidth="2.4" />
-          <path
-            d="M18.5 41l10.2-10.2a2.8 2.8 0 014 0l4.3 4.3a2.8 2.8 0 004 0l3.2-3.2"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case "launch":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path
-            d="M21 34.5c8.4-10.933 18.133-15.433 29.2-13.5-1.067 10.933-6.2 20.267-15.4 28-6.8 1.067-11.4-0.267-13.8-4 .267-4 .267-7.5 0-10.5z"
-            stroke="currentColor"
-            strokeWidth="2.3"
-            strokeLinejoin="round"
-          />
-          <path d="M25 39.5l-6.5 6.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
-          <path d="M35.5 29L42 35.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
-          <circle cx="40.5" cy="24.5" r="2.6" fill="currentColor" />
-        </svg>
-      );
-    case "traffic":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path d="M19 44V29" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M31.5 44V22.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M44 44V17" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path
-            d="M19 28.5l10.5-7.5 8 6 10-12"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path d="M42 16h7v7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-        </svg>
-      );
-    case "warehouse":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path
-            d="M16 29l16-12 16 12v17H16V29z"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinejoin="round"
-          />
-          <path d="M26 46V34h12v12" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M22 28.5h20" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-        </svg>
-      );
-    case "staff":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <circle cx="25" cy="24" r="5.8" stroke="currentColor" strokeWidth="2.4" />
-          <circle cx="41.5" cy="26" r="4.5" stroke="currentColor" strokeWidth="2.4" opacity="0.82" />
-          <path
-            d="M15.5 45c1.333-6 5.5-9 12.5-9 7.067 0 11.2 3 12.4 9"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-          />
-          <path
-            d="M37.5 42.5c1.067-3.4 3.533-5.1 7.4-5.1 2 0 3.8.567 5.4 1.7"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            opacity="0.82"
-          />
-        </svg>
-      );
-    case "tasks":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path d="M17 21h18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M17 32h26" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M17 43h18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M40 29.5l3.6 3.6 7.4-8.6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case "api":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path
-            d="M22 32h20"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-          />
-          <path
-            d="M28 25l-7 7 7 7M36 25l7 7-7 7"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case "custom":
-      return (
-        <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path
-            d="M21 42.5l2.7-8L39.6 18.6a4.808 4.808 0 016.8 6.8L30.5 41.3 22.5 44l-1.5-1.5z"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinejoin="round"
-          />
-          <path d="M34.5 23.5l6 6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M18 48h16" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-        </svg>
-      );
-    default:
-      return null;
-  }
+function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
+  return (
+    <Image
+      className="additionals-card__icon-image"
+      src={iconMap[type]}
+      alt=""
+      width={32}
+      height={32}
+      aria-hidden="true"
+    />
+  );
 }
 
 function AdditionalCard({
@@ -273,7 +168,14 @@ function AdditionalCard({
     >
       <div className="additionals-card__corner" aria-hidden="true" />
 
-      {item.recommended ? <div className="additionals-card__recommend">Рекомендуем</div> : null}
+      {item.recommended ? (
+        <div className="additionals-card__recommend">
+          <span className="additionals-card__recommend-icon" aria-hidden="true">
+            <Image src="/images/additionals/icon-thumb-fill.svg" alt="" width={14} height={14} />
+          </span>
+          <span>Рекомендуем</span>
+        </div>
+      ) : null}
 
       <div className="additionals-card__icon-wrap">
         <div className="additionals-card__icon-pattern" aria-hidden="true" />
