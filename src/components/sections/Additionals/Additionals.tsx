@@ -137,18 +137,17 @@ function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
           <path
-            d="M18 18h28v28H18z"
-            rx="8"
+            d="M20 19.5h24a4.5 4.5 0 014.5 4.5v16a4.5 4.5 0 01-4.5 4.5H20A4.5 4.5 0 0115.5 40V24a4.5 4.5 0 014.5-4.5z"
             stroke="currentColor"
-            strokeWidth="3"
-            opacity="0.9"
+            strokeWidth="2.4"
           />
-          <circle cx="26" cy="26" r="5" fill="currentColor" opacity="0.92" />
+          <circle cx="25.5" cy="28" r="4.2" stroke="currentColor" strokeWidth="2.4" />
           <path
-            d="M21 39c4-4.667 8.333-7 13-7 3.333 0 6.667 1.667 10 5"
+            d="M18.5 41l10.2-10.2a2.8 2.8 0 014 0l4.3 4.3a2.8 2.8 0 004 0l3.2-3.2"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       );
@@ -156,60 +155,60 @@ function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
           <path
-            d="M21 43c-1.333-8 1.333-14.667 8-20 5.333-4.267 11.333-6.6 18-7-0.4 6.933-2.733 13-7 18.2-5.2 6.4-12 9-20 7.8z"
+            d="M21 34.5c8.4-10.933 18.133-15.433 29.2-13.5-1.067 10.933-6.2 20.267-15.4 28-6.8 1.067-11.4-0.267-13.8-4 .267-4 .267-7.5 0-10.5z"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.3"
             strokeLinejoin="round"
           />
-          <path d="M31 33l-8 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M37 27l6 6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="41" cy="23" r="3" fill="currentColor" />
+          <path d="M25 39.5l-6.5 6.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
+          <path d="M35.5 29L42 35.5" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
+          <circle cx="40.5" cy="24.5" r="2.6" fill="currentColor" />
         </svg>
       );
     case "traffic":
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path d="M18 46V30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M32 46V22" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M46 46V14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <path d="M19 44V29" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M31.5 44V22.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M44 44V17" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
           <path
-            d="M18 28l10-8 8 6 10-12"
+            d="M19 28.5l10.5-7.5 8 6 10-12"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <path d="M42 14h8v8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <path d="M42 16h7v7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
         </svg>
       );
     case "warehouse":
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
           <path
-            d="M14 28l18-12 18 12v20H14V28z"
+            d="M16 29l16-12 16 12v17H16V29z"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinejoin="round"
           />
-          <path d="M24 48V34h16v14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M20 28h24" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <path d="M26 46V34h12v12" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M22 28.5h20" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
         </svg>
       );
     case "staff":
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <circle cx="24" cy="24" r="7" stroke="currentColor" strokeWidth="3" />
-          <circle cx="42" cy="26" r="5" stroke="currentColor" strokeWidth="3" opacity="0.82" />
+          <circle cx="25" cy="24" r="5.8" stroke="currentColor" strokeWidth="2.4" />
+          <circle cx="41.5" cy="26" r="4.5" stroke="currentColor" strokeWidth="2.4" opacity="0.82" />
           <path
-            d="M14 46c1.333-7.333 6-11 14-11s12.667 3.667 14 11"
+            d="M15.5 45c1.333-6 5.5-9 12.5-9 7.067 0 11.2 3 12.4 9"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinecap="round"
           />
           <path
-            d="M38 44c1.067-4.267 3.733-6.4 8-6.4 2.133 0 4 0.667 5.6 2"
+            d="M37.5 42.5c1.067-3.4 3.533-5.1 7.4-5.1 2 0 3.8.567 5.4 1.7"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinecap="round"
             opacity="0.82"
           />
@@ -218,25 +217,25 @@ function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
     case "tasks":
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <path d="M18 20h28" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M18 32h18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M18 44h20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M42 31l4 4 8-10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M17 21h18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M17 32h26" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M17 43h18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M40 29.5l3.6 3.6 7.4-8.6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
     case "api":
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
           <path
-            d="M19 32h10m6 0h10"
+            d="M22 32h20"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinecap="round"
           />
           <path
-            d="M25 24l-8 8 8 8M39 24l8 8-8 8"
+            d="M28 25l-7 7 7 7M36 25l7 7-7 7"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -246,13 +245,13 @@ function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
       return (
         <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true">
           <path
-            d="M20 42l3.2-8.8L41 15.4a5.657 5.657 0 018 8L31.2 41.2 22.4 44 20 42z"
+            d="M21 42.5l2.7-8L39.6 18.6a4.808 4.808 0 016.8 6.8L30.5 41.3 22.5 44l-1.5-1.5z"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.4"
             strokeLinejoin="round"
           />
-          <path d="M34 22l8 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          <path d="M18 48h28" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <path d="M34.5 23.5l6 6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M18 48h16" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
         </svg>
       );
     default:
@@ -273,10 +272,6 @@ function AdditionalCard({
       style={{ "--additionals-delay": delay, "--additionals-accent": item.accent } as CSSProperties}
     >
       <div className="additionals-card__corner" aria-hidden="true" />
-      <div className="additionals-card__plus" aria-hidden="true">
-        <span />
-        <span />
-      </div>
 
       {item.recommended ? <div className="additionals-card__recommend">Рекомендуем</div> : null}
 
