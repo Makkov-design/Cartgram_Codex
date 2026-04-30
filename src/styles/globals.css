@@ -8236,9 +8236,9 @@ main {
 }
 
 .prices-grid--desktop > .prices-card {
-  display: grid !important;
-  grid-template-rows: auto auto auto auto auto 1fr !important;
-  align-content: start !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
   gap: 0 !important;
   height: auto !important;
   min-height: 0 !important;
@@ -8247,9 +8247,8 @@ main {
 
 .prices-grid--desktop > .prices-card h3 {
   margin: 0 !important;
-  min-height: 0 !important;
-  display: flex !important;
-  align-items: flex-start !important;
+  min-height: 52px !important;
+  display: block !important;
 }
 
 .prices-grid--desktop > .prices-card .prices-card__price-row {
@@ -8276,6 +8275,7 @@ main {
 
 .prices-grid--desktop > .prices-card .prices-card__label {
   margin-top: 18px !important;
+  min-height: 44px !important;
 }
 
 .prices-grid--desktop > .prices-card ul {
@@ -8284,7 +8284,7 @@ main {
 }
 
 .prices-grid--desktop > .prices-card.prices-card--featured {
-  padding: 18px 26px 24px !important;
+  padding: 26px 26px 24px !important;
   min-height: 0 !important;
   height: auto !important;
   background: linear-gradient(90deg, #9999ff 0%, #98cbff 50%, #a1e5e5 100%) !important;
@@ -8305,13 +8305,6 @@ main {
   opacity: 0.11 !important;
   background: radial-gradient(circle, rgba(152, 203, 255, 0.34) 0%, rgba(161, 229, 229, 0.14) 28%, rgba(161, 229, 229, 0) 74%) !important;
   filter: blur(38px) !important;
-}
-
-.prices-grid--desktop > .prices-card.prices-card--featured h3,
-.prices-grid--desktop > .prices-card.prices-card--featured .prices-card__price-row,
-.prices-grid--desktop > .prices-card.prices-card--featured .prices-card__cta,
-.prices-grid--desktop > .prices-card.prices-card--featured .prices-card__label {
-  margin-top: 0 !important;
 }
 
 .prices-grid--desktop > .prices-card.prices-card--featured .prices-card__price-row {
