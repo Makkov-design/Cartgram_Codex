@@ -89,8 +89,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-page text-primary">
+    <html lang="ru" className="antialiased">
+      <body className="bg-page text-primary">
         {children}
         <script dangerouslySetInnerHTML={{ __html: revealScript }} />
       </body>

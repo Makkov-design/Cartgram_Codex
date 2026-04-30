@@ -46,8 +46,8 @@ export function Button({
     .join(" ");
 
   const content = (
-    <span className="flex items-center gap-2">
-      <span className="font-medium leading-none">{children}</span>
+    <span className="flex flex-nowrap items-center gap-2 whitespace-nowrap">
+      <span className="font-medium leading-none whitespace-nowrap">{children}</span>
       {icon === "arrow" ? (
         <span className="relative h-6 w-6 overflow-hidden">
           <ArrowRightIcon className="absolute left-0 top-0 h-6 w-6 transition-transform duration-300 ease-out group-hover:translate-x-6" />

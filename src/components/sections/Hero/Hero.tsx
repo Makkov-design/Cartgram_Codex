@@ -27,7 +27,6 @@ export function Hero() {
     }
 
     const ctx = gsap.context(() => {
-      const underlineWidth = "100%";
       const decorativeItems = gsap.utils.toArray<HTMLElement>(".hero-decor-enter");
       const frameItems = gsap.utils.toArray<HTMLElement>(".hero-frame-enter");
       const videoGlowItems = gsap.utils.toArray<HTMLElement>(".hero-video-glow-enter");
@@ -50,7 +49,7 @@ export function Hero() {
       );
       gsap.set(underlineMaskRef.current, {
         autoAlpha: 0,
-        width: 0,
+        clipPath: "inset(0 100% 0 0)",
       });
       gsap.set(decorativeItems, { y: 16 });
       gsap.set(frameItems, { y: 24 });
@@ -115,7 +114,7 @@ export function Hero() {
           underlineMaskRef.current,
           {
             autoAlpha: 1,
-            width: underlineWidth,
+            clipPath: "inset(0 0% 0 0)",
             duration: 0.85,
             ease: "power3.out",
           },

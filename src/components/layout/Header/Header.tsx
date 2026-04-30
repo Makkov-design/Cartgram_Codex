@@ -47,7 +47,7 @@ export function Header() {
           : "",
       ].join(" ")}
     >
-      <div className="relative z-10 mx-auto flex h-[72px] max-w-[1920px] items-center justify-between px-5 max-[430px]:px-4 md:px-8 lg:px-20">
+      <div className="relative z-10 mx-auto flex h-[72px] max-w-[1920px] items-center justify-between px-5 max-[430px]:px-4 md:px-6 lg:px-20">
         <div
           className={[
             "flex min-w-0 items-center gap-6 transition-all duration-700 ease-out max-[430px]:gap-3 lg:gap-10",
