@@ -8242,18 +8242,18 @@ main {
   gap: 0 !important;
   height: auto !important;
   min-height: 0 !important;
-  padding: 32px 26px 26px !important;
+  padding: 26px 26px 24px !important;
 }
 
 .prices-grid--desktop > .prices-card h3 {
   margin: 0 !important;
-  min-height: 48px !important;
+  min-height: 0 !important;
   display: flex !important;
   align-items: flex-start !important;
 }
 
 .prices-grid--desktop > .prices-card .prices-card__price-row {
-  margin-top: 24px !important;
+  margin-top: 18px !important;
   min-height: 44px !important;
 }
 
@@ -8266,7 +8266,7 @@ main {
   width: 100% !important;
   min-height: 48px !important;
   height: 48px !important;
-  margin-top: 24px !important;
+  margin-top: 20px !important;
   border-radius: 8px !important;
 }
 
@@ -8275,16 +8275,16 @@ main {
 }
 
 .prices-grid--desktop > .prices-card .prices-card__label {
-  margin-top: 24px !important;
+  margin-top: 18px !important;
 }
 
 .prices-grid--desktop > .prices-card ul {
-  margin-top: 12px !important;
-  gap: 12px !important;
+  margin-top: 10px !important;
+  gap: 8px !important;
 }
 
 .prices-grid--desktop > .prices-card.prices-card--featured {
-  padding: 32px 26px 26px !important;
+  padding: 18px 26px 24px !important;
   min-height: 0 !important;
   height: auto !important;
   background: linear-gradient(90deg, #9999ff 0%, #98cbff 50%, #a1e5e5 100%) !important;
@@ -8315,15 +8315,20 @@ main {
 }
 
 .prices-grid--desktop > .prices-card.prices-card--featured .prices-card__price-row {
-  margin-top: 24px !important;
+  margin-top: 18px !important;
 }
 
 .prices-grid--desktop > .prices-card.prices-card--featured .prices-card__cta {
-  margin-top: 24px !important;
+  margin-top: 20px !important;
 }
 
 .prices-grid--desktop > .prices-card.prices-card--featured .prices-card__label {
-  margin-top: 24px !important;
+  margin-top: 18px !important;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured ul {
+  margin-top: 10px !important;
+  gap: 8px !important;
 }
 
 .prices-grid--desktop > .prices-card.prices-card--start li svg {
@@ -8348,7 +8353,7 @@ main {
 @media (max-width: 1599px) {
   .prices-grid--desktop > .prices-card,
   .prices-grid--desktop > .prices-card.prices-card--featured {
-    padding: 28px 22px 22px !important;
+    padding: 24px 22px 20px !important;
   }
 
   .prices-grid--desktop > .prices-card.prices-card--featured .prices-card__light {
