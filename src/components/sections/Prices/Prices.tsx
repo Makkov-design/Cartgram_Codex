@@ -234,6 +234,7 @@ export function Prices() {
   const mobileScrollerRef = useRef<HTMLDivElement | null>(null);
   const [billing, setBilling] = useState<BillingMode>("monthly");
   const [showCompare, setShowCompare] = useState(false);
+  const mobilePlusPeek = 40;
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -294,7 +295,7 @@ export function Prices() {
         return;
       }
 
-      const offset = Math.max(0, plusSlide.offsetLeft - 16);
+      const offset = Math.max(0, plusSlide.offsetLeft - mobilePlusPeek);
       scroller.scrollTo({ left: offset, behavior: "auto" });
     };
 

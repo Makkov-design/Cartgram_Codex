@@ -8369,7 +8369,7 @@ main {
   }
 
   .prices-toggle-wrap {
-    margin-top: 28px !important;
+    margin-top: 36px !important;
   }
 
   .prices-mobile-slider {
@@ -8377,6 +8377,7 @@ main {
     width: 100vw;
     max-width: none;
     margin-left: calc(50% - 50vw);
+    margin-top: 24px;
   }
 
   .prices-mobile-slider__scroller {
@@ -8386,9 +8387,9 @@ main {
     overflow-y: hidden;
     width: 100%;
     padding-inline: 16px;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
     scroll-snap-type: x mandatory;
-    scroll-padding-left: 16px;
+    scroll-padding-left: 40px;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -8400,12 +8401,12 @@ main {
   }
 
   .prices-mobile-slider__slide {
-    flex: 0 0 min(308px, calc(100vw - 82px));
+    flex: 0 0 min(308px, calc(100vw - 56px));
     scroll-snap-align: start;
   }
 
   .prices-mobile-slider__slide--enterprise {
-    flex-basis: min(308px, calc(100vw - 82px));
+    flex-basis: min(308px, calc(100vw - 56px));
   }
 
   .prices-mobile-card,
@@ -8414,7 +8415,7 @@ main {
     overflow: hidden;
     display: flex !important;
     flex-direction: column !important;
-    gap: 32px !important;
+    gap: 24px !important;
     min-height: 0 !important;
     height: auto !important;
     padding: 24px !important;
@@ -8451,6 +8452,7 @@ main {
     z-index: 2;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
     width: 100%;
   }
@@ -8481,7 +8483,7 @@ main {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
   }
 
@@ -8509,7 +8511,7 @@ main {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
   }
 
@@ -8517,7 +8519,7 @@ main {
   .prices-mobile-enterprise ul {
     display: flex;
     flex-direction: column;
-    gap: 12px !important;
+    gap: 10px !important;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -8567,13 +8569,13 @@ main {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    font-size: 40px;
-    line-height: 1;
+    font-size: 32px;
+    line-height: 1.02;
     color: #e6e6f2;
   }
 
   .prices-mobile-enterprise__copy h3 span {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.2;
     color: #e6e6f2;
   }
@@ -8591,9 +8593,10 @@ main {
   }
 
   .prices-mobile-enterprise__cta {
-    width: 244px !important;
+    width: 100% !important;
     max-width: 100% !important;
-    align-self: flex-start;
+    min-width: 0 !important;
+    align-self: stretch;
   }
 }
 
