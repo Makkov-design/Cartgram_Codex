@@ -50,6 +50,12 @@ const desktopDigitSizes = {
   3: { width: 14, height: 20 },
 } as const;
 
+const mobileDigitSizes = {
+  1: { width: 3, height: 15 },
+  2: { width: 11, height: 15 },
+  3: { width: 10, height: 15 },
+} as const;
+
 function StepHexagon({
   done = false,
   mobile = false,
@@ -60,6 +66,7 @@ function StepHexagon({
   step: 1 | 2 | 3 | 4;
 }) {
   const suffix = mobile ? "mobile" : "desktop";
+  const digitSizes = mobile ? mobileDigitSizes : desktopDigitSizes;
 
   return (
     <span className={`steps-hex${mobile ? " steps-hex--mobile" : ""}`} aria-hidden="true">
@@ -115,8 +122,8 @@ function StepHexagon({
             className={`steps-hex__digit steps-hex__digit--${step}`}
             src={mobile ? mobileDigits[step as 1 | 2 | 3] : desktopDigits[step as 1 | 2 | 3]}
             alt=""
-            width={desktopDigitSizes[step as 1 | 2 | 3].width}
-            height={desktopDigitSizes[step as 1 | 2 | 3].height}
+            width={digitSizes[step as 1 | 2 | 3].width}
+            height={digitSizes[step as 1 | 2 | 3].height}
           />
         </>
       )}
@@ -210,6 +217,25 @@ function MobileStepCard({
         </Button>
       ) : null}
     </article>
+  );
+}
+
+function MobileArrowDownIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="steps-mobile__arrow-icon"
+    >
+      <path
+        d="M7 10L12 15L17 10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
@@ -308,13 +334,7 @@ export function Steps() {
                   aria-hidden="true"
                   style={{ "--steps-delay": `${0.2 + index * 0.06}s` } as CSSProperties}
                 >
-                  <Image
-                    className="steps-mobile__arrow-icon"
-                    src="/images/steps/arrow-fill-mobile.svg"
-                    alt=""
-                    width={20}
-                    height={20}
-                  />
+                  <MobileArrowDownIcon />
                 </div>
               ) : null}
             </div>

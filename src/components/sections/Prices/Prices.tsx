@@ -199,6 +199,8 @@ function PlanCard({ plan, billing, index }: { plan: Plan; billing: BillingMode; 
       <div className="prices-card__pattern" aria-hidden="true" />
       <div className="prices-card__light" aria-hidden="true" />
 
+      {plan.variant === "featured" ? <div className="prices-card__badge">Лучшая выгода</div> : null}
+
       <h3>{plan.name}</h3>
       <div className={`prices-card__price-row ${isYearly ? "is-yearly" : ""}`}>
         {isYearly ? <span className="prices-card__old-price-inline">{formatPrice(plan.monthly)}</span> : null}
@@ -234,7 +236,6 @@ export function Prices() {
   const mobileScrollerRef = useRef<HTMLDivElement | null>(null);
   const [billing, setBilling] = useState<BillingMode>("monthly");
   const [showCompare, setShowCompare] = useState(false);
-  const mobilePlusPeek = 40;
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -285,30 +286,51 @@ export function Prices() {
       return;
     }
 
-    const positionMobileScroller = () => {
+    let centred = false;
+    const positionMobileScroller = (force = false) => {
       if (!window.matchMedia("(max-width: 600px)").matches) {
-        return;
+        return false;
       }
-
+      if (centred && !force) {
+        return true;
+      }
       const plusSlide = scroller.querySelector<HTMLElement>('[data-plan-slide="plus"]');
-      if (!plusSlide) {
-        return;
+      if (!plusSlide || scroller.clientWidth === 0 || plusSlide.offsetWidth === 0) {
+        return false;
       }
-
-      const offset = Math.max(0, plusSlide.offsetLeft - mobilePlusPeek);
-      scroller.scrollTo({ left: offset, behavior: "auto" });
+      // Center the Plus slide inside the scrollport so adjacent cards peek on both sides.
+      const slideCenter = plusSlide.offsetLeft + plusSlide.offsetWidth / 2;
+      const offset = Math.max(0, slideCenter - scroller.clientWidth / 2);
+      scroller.scrollLeft = offset;
+      centred = true;
+      return true;
     };
 
-    const frame = window.requestAnimationFrame(() => {
+    // ResizeObserver fires once the scroller actually has a size — that's the
+    // earliest moment we can reliably set scrollLeft (rAF/setTimeout sometimes
+    // run before layout in Next dev with deferred hydration).
+    const ro = new ResizeObserver(() => {
       positionMobileScroller();
-      window.setTimeout(positionMobileScroller, 80);
     });
+    ro.observe(scroller);
 
-    window.addEventListener("resize", positionMobileScroller);
+    const onResize = () => {
+      centred = false;
+      positionMobileScroller();
+    };
+    window.addEventListener("resize", onResize);
+
+    // Belt-and-braces immediate attempts.
+    const frame = window.requestAnimationFrame(() => positionMobileScroller());
+    const t1 = window.setTimeout(() => positionMobileScroller(), 120);
+    const t2 = window.setTimeout(() => positionMobileScroller(), 400);
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.removeEventListener("resize", positionMobileScroller);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.removeEventListener("resize", onResize);
+      ro.disconnect();
     };
   }, []);
 
@@ -376,6 +398,8 @@ export function Prices() {
                   >
                     <div className="prices-card__pattern" aria-hidden="true" />
                     <div className="prices-card__light" aria-hidden="true" />
+
+                    {plan.variant === "featured" ? <div className="prices-card__badge">Лучшая выгода</div> : null}
 
                     <div className="prices-mobile-card__header">
                       <h3>{plan.name}</h3>

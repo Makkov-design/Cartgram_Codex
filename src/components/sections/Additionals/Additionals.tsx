@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/buttons/Button";
@@ -252,28 +253,41 @@ function MobileAccordionItem({
         </span>
       </button>
 
-      <div className="additionals-mobile-card__content" hidden={!isOpen}>
-        <p>{item.description}</p>
-
-        {item.price.kind === "price" ? (
-          <div className="additionals-mobile-card__price-block">
-            <div className="additionals-mobile-card__price-row">
-              <strong>{item.price.amount}</strong>
-              <span>{item.price.suffix}</span>
-            </div>
-            <small>{item.price.note}</small>
-          </div>
-        ) : (
-          <Button
-            className="additionals-mobile-card__cta"
-            variant="secondary"
-            size="large"
-            icon="arrow"
+      <AnimatePresence initial={false}>
+        {isOpen ? (
+          <motion.div
+            key="content"
+            className="additionals-mobile-card__content-wrap"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            {item.price.label}
-          </Button>
-        )}
-      </div>
+            <div className="additionals-mobile-card__content">
+              <p>{item.description}</p>
+
+              {item.price.kind === "price" ? (
+                <div className="additionals-mobile-card__price-block">
+                  <div className="additionals-mobile-card__price-row">
+                    <strong>{item.price.amount}</strong>
+                    <span>{item.price.suffix}</span>
+                  </div>
+                  <small>{item.price.note}</small>
+                </div>
+              ) : (
+                <Button
+                  className="additionals-mobile-card__cta"
+                  variant="secondary"
+                  size="large"
+                  icon="arrow"
+                >
+                  {item.price.label}
+                </Button>
+              )}
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </article>
   );
 }

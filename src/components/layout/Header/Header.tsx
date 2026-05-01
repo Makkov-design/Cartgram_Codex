@@ -14,9 +14,31 @@ const navItems = [
   { href: "#faq", label: "FAQ" },
 ];
 
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5 text-[#bebecc]">
+      <path
+        d="M18 6L6 18"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6 6L18 18"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isEntered, setIsEntered] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
@@ -33,6 +55,43 @@ export function Header() {
     });
 
     return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const handleChange = () => {
+      if (mediaQuery.matches) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
   }, []);
 
   return (
@@ -67,10 +126,10 @@ export function Header() {
             <Image
               src="/images/logos/cartgram-logomark-white.svg"
               alt="Cartgram"
-              width={28}
-              height={28}
+              width={38}
+              height={32}
               priority
-              className="block h-7 w-7 shrink-0 md:hidden"
+              className="block h-8 w-[38px] shrink-0 md:hidden"
             />
           </a>
 
@@ -102,20 +161,99 @@ export function Header() {
           <a
             href="#hero"
             aria-label="Вход"
-            className="group hidden h-10 w-10 items-center justify-center gap-2 rounded-[8px] bg-[rgba(230,230,242,0.07)] text-[16px] font-medium leading-none text-secondary transition-all duration-300 ease-out hover:rounded-[24px] hover:bg-[rgba(230,230,242,0.12)] sm:inline-flex sm:w-[147px] sm:px-6"
+            className="group hidden h-10 w-10 items-center justify-center gap-2 rounded-[8px] bg-[rgba(230,230,242,0.07)] text-[16px] font-medium leading-none text-secondary transition-all duration-300 ease-out hover:rounded-[24px] hover:bg-[rgba(230,230,242,0.12)] md:inline-flex md:w-[147px] md:px-6"
           >
             <LoginIcon className="h-5 w-5" />
             <span className="hidden sm:inline">Вход</span>
           </a>
           <button
             type="button"
+            onClick={() => setIsMenuOpen((current) => !current)}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
             aria-label="Открыть меню"
-            className="inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-[8px] bg-[rgba(230,230,242,0.07)] transition-colors duration-300 ease-out hover:bg-[rgba(230,230,242,0.12)] max-[430px]:h-9 max-[430px]:w-9 max-[430px]:gap-1 lg:hidden"
+            className={[
+              "inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-[8px] bg-[rgba(230,230,242,0.07)] transition-all duration-300 ease-out hover:bg-[rgba(230,230,242,0.12)] max-[430px]:h-9 max-[430px]:w-9 max-[430px]:gap-1 lg:hidden",
+              isMenuOpen ? "bg-[rgba(230,230,242,0.14)]" : "",
+            ].join(" ")}
           >
-            <span className="block h-[2px] w-5 rounded-full bg-[#bebecc]" />
-            <span className="block h-[2px] w-5 rounded-full bg-[#bebecc]" />
-            <span className="block h-[2px] w-5 rounded-full bg-[#bebecc]" />
+            {isMenuOpen ? (
+              <CloseIcon />
+            ) : (
+              <>
+                <span className="block h-[2px] w-5 rounded-full bg-[#bebecc] transition-transform duration-300 ease-out" />
+                <span className="block h-[2px] w-5 rounded-full bg-[#bebecc] transition-all duration-300 ease-out" />
+                <span className="block h-[2px] w-5 rounded-full bg-[#bebecc] transition-transform duration-300 ease-out" />
+              </>
+            )}
           </button>
+        </div>
+      </div>
+
+      <div
+        className={[
+          "fixed inset-x-0 bottom-0 top-[72px] z-0 bg-[rgba(8,8,12,0.7)] transition-opacity duration-300 ease-out lg:hidden",
+          "supports-[backdrop-filter]:backdrop-blur-xl",
+          isMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+        ].join(" ")}
+        onClick={() => setIsMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      <div
+        id="mobile-navigation"
+        className={[
+          "fixed inset-x-4 top-[88px] z-10 overflow-hidden rounded-[28px] border border-[rgba(152,203,255,0.14)] bg-[linear-gradient(180deg,rgba(20,22,30,0.98)_0%,rgba(13,14,20,0.96)_100%)] shadow-[0_30px_80px_rgba(0,0,0,0.45),0_0_0_1px_rgba(255,255,255,0.03)] transition-all duration-400 ease-out lg:hidden",
+          "supports-[backdrop-filter]:backdrop-blur-2xl",
+          isMenuOpen
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-4 opacity-0",
+        ].join(" ")}
+      >
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(152,203,255,0.9),transparent)]" />
+        <div className="pointer-events-none absolute -left-10 top-8 h-28 w-28 rounded-full bg-[rgba(152,203,255,0.12)] blur-3xl" />
+        <div className="pointer-events-none absolute right-[-20px] top-20 h-32 w-32 rounded-full bg-[rgba(184,163,255,0.1)] blur-3xl" />
+
+        <div className="relative flex flex-col gap-6 p-6 max-[430px]:gap-4 max-[430px]:p-6">
+          <div className="border-b border-[rgba(230,230,242,0.08)] pb-3">
+            <p className="text-[12px] font-medium uppercase tracking-[0.22em] text-[rgba(152,203,255,0.78)]">
+              Navigation
+            </p>
+          </div>
+
+          <div className="flex flex-col">
+            <div className="flex flex-col">
+              {navItems.map((item, index) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="group flex items-center justify-between gap-4 border-b border-[rgba(230,230,242,0.08)] py-4 transition-colors duration-300 ease-out last:border-b-0 hover:text-white"
+                >
+                  <span className="text-[22px] font-medium leading-[1.05] tracking-[-0.03em] text-primary transition-transform duration-300 ease-out group-hover:translate-x-[2px]">
+                    {item.label}
+                  </span>
+                  <span className="text-[14px] font-medium leading-none text-[rgba(138,138,153,0.92)] transition-colors duration-300 group-hover:text-[rgba(152,203,255,0.9)]">
+                    0{index + 1}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <Button className="w-full" size="large" variant="primary">
+              Регистрация
+            </Button>
+            <a
+              href="#hero"
+              onClick={() => setIsMenuOpen(false)}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-[14px] border border-[rgba(230,230,242,0.08)] bg-[rgba(230,230,242,0.07)] px-4 text-[16px] font-medium leading-none text-secondary transition-all duration-300 ease-out hover:border-[rgba(152,203,255,0.18)] hover:bg-[rgba(230,230,242,0.12)]"
+            >
+              <LoginIcon className="h-5 w-5" />
+              <span>Вход</span>
+            </a>
+          </div>
         </div>
       </div>
     </header>

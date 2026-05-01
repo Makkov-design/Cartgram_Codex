@@ -8552,6 +8552,12 @@ main {
     height: 20px;
   }
 
+  .prices-mobile-enterprise li svg {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+  }
+
   .prices-mobile-card--start li svg {
     color: rgba(230, 230, 242, 0.76) !important;
   }
@@ -8600,10 +8606,488 @@ main {
   }
 
   .prices-mobile-enterprise__cta {
-    width: 100% !important;
+    width: 244px !important;
     max-width: 100% !important;
+    align-self: flex-start;
+  }
+}
+
+/* Prices design-token alignment pass (Figma vibecode) */
+.prices-grid--desktop > .prices-card h3,
+.prices-mobile-card__header h3 {
+  color: #e6e6f2;
+  font-family: var(--font-display, "TT Firs Neue Trl"), "TT Firs Neue Trl", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.prices-grid--desktop > .prices-card h3 {
+  font-size: 56px !important;
+  line-height: 1 !important;
+  min-height: 56px !important;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__price-row {
+  align-items: baseline !important;
+  gap: 8px !important;
+  min-height: 44px !important;
+  margin-top: 32px !important;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__price-row .prices-card__price-main span {
+  font-size: 40px !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+  color: #e6e6f2;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__price-row .prices-card__price-main small {
+  margin-bottom: 0 !important;
+  color: #8a8a99;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__old-price-inline {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  color: #8a8a99;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__payment {
+  color: #8a8a99;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__saving {
+  height: 26px;
+  padding: 0 8px !important;
+  border-radius: 8px;
+  background: rgba(153, 153, 255, 0.16);
+  color: #9999ff;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+}
+
+.prices-grid--desktop > .prices-card .prices-card__label {
+  margin-top: 32px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.prices-grid--desktop > .prices-card li {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  color: #bebecc;
+}
+
+.prices-grid--desktop > .prices-card li svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Older rule `.prices-card--featured > *` set position:relative on every child,
+   knocking pattern/light out of absolute flow and inflating the card on mobile.
+   Re-anchor decorative + badge children. */
+.prices-card.prices-card--featured > .prices-card__pattern,
+.prices-card.prices-card--featured > .prices-card__light,
+.prices-card.prices-card--featured > .prices-card__badge {
+  position: absolute !important;
+}
+
+.prices-card.prices-card--featured .prices-card__badge,
+.prices-grid--desktop > .prices-card.prices-card--featured .prices-card__badge,
+.prices-mobile-card.prices-card--featured .prices-card__badge {
+  display: inline-flex !important;
+  position: absolute !important;
+  z-index: 5 !important;
+  top: 12px !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  max-width: calc(100% - 24px) !important;
+  height: 24px !important;
+  transform: translateX(-50%) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: #17171a !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  pointer-events: none;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured {
+  position: relative;
+  padding: 40px 0 0 !important;
+  background: linear-gradient(90deg, #9999ff 0%, #98cbff 50%, #a1e5e5 100%) !important;
+  border-radius: 32px !important;
+  overflow: hidden;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured::before {
+  inset: 36px 4px 4px !important;
+  border-radius: 28px !important;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured > *:not(.prices-card__pattern):not(.prices-card__light):not(.prices-card__badge) {
+  margin-left: 28px !important;
+  margin-right: 28px !important;
+  width: auto !important;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured > h3 {
+  margin-top: 24px !important;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured ul {
+  margin-bottom: 24px !important;
+}
+
+.prices-grid--desktop > .prices-card.prices-card--featured .prices-card__cta {
+  width: auto !important;
+  align-self: stretch;
+}
+
+@media (max-width: 1599px) {
+  .prices-grid--desktop > .prices-card h3 {
+    font-size: 48px !important;
+  }
+
+  .prices-grid--desktop > .prices-card .prices-card__price-row .prices-card__price-main span {
+    font-size: 36px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .prices-grid--desktop > .prices-card.prices-card--featured > *:not(.prices-card__pattern):not(.prices-card__light):not(.prices-card__badge) {
+    margin-left: 22px !important;
+    margin-right: 22px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .prices-mobile-card.prices-card--featured .prices-card__badge {
+    top: 14px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.16em !important;
+  }
+}
+
+/* Toggle: smooth hover + pressed states */
+.prices-toggle button {
+  transition: background 180ms ease, color 180ms ease, transform 120ms ease;
+  cursor: pointer;
+}
+
+.prices-toggle button:hover:not(.is-active) {
+  background: rgba(230, 230, 242, 0.06) !important;
+  color: #ffffff;
+}
+
+.prices-toggle button.is-active {
+  background: rgba(230, 230, 242, 0.12) !important;
+}
+
+.prices-toggle button.is-active:hover {
+  background: rgba(230, 230, 242, 0.16) !important;
+}
+
+.prices-toggle button:active {
+  transform: scale(0.98);
+}
+
+.prices-toggle button:focus-visible {
+  outline: 2px solid rgba(153, 153, 255, 0.65);
+  outline-offset: 2px;
+}
+
+/* Divider plus button - page-bg fill, bigger plus, gradient stroke */
+.prices-divider__button {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 999px !important;
+  background: #0b0b0d !important;
+  box-shadow: inset 0 0 0 1.5px rgba(230, 230, 242, 0.12) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  position: relative !important;
+}
+
+.prices-divider__button::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #9999ff 0%, #98cbff 50%, #a1e5e5 100%);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 4v16M4 12h16' stroke='black' stroke-width='2.4' stroke-linecap='round'/></svg>") center / 24px 24px no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 4v16M4 12h16' stroke='black' stroke-width='2.4' stroke-linecap='round'/></svg>") center / 24px 24px no-repeat;
+}
+
+/* Activation card Telegram icon: 40x40, transparent (no circle bg) */
+.prices-activation__icon {
+  width: 40px !important;
+  height: 40px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.prices-activation__icon img {
+  width: 40px !important;
+  height: 40px !important;
+  transform: none !important;
+  object-fit: contain !important;
+}
+
+/* Mobile slider cards never had .prices-reveal, so the base
+   `.prices-card { opacity:0 }` never flipped to 1.
+   Force them (and the enterprise tile) visible. */
+.prices-mobile-slider .prices-mobile-card,
+.prices-mobile-slider .prices-mobile-enterprise {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Compare table - design-aligned rebuild */
+.prices-compare {
+  margin-top: 32px;
+}
+
+.prices-compare__table {
+  border-top: 1px solid rgba(230, 230, 242, 0.1);
+}
+
+.prices-compare__header,
+.prices-compare__row {
+  display: grid !important;
+  grid-template-columns: minmax(280px, 1.2fr) repeat(4, minmax(0, 1fr)) !important;
+  align-items: center;
+}
+
+.prices-compare__header {
+  padding: 18px 0 !important;
+  border-bottom: 1px solid rgba(230, 230, 242, 0.1);
+}
+
+.prices-compare__head-cell {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #e6e6f2;
+  padding: 0 16px !important;
+  text-align: center;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.prices-compare__head-cell--label {
+  text-align: left !important;
+  color: #8a8a99;
+  padding-left: 0 !important;
+}
+
+.prices-compare__row {
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(230, 230, 242, 0.06);
+}
+
+.prices-compare__cell {
+  padding: 0 16px !important;
+  text-align: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 28px;
+  color: #bebecc;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.prices-compare__cell--label {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  padding-left: 0 !important;
+}
+
+.prices-compare__feature {
+  display: grid !important;
+  grid-template-columns: 20px minmax(0, 1fr) 20px !important;
+  gap: 12px !important;
+  align-items: center;
+  width: 100% !important;
+}
+
+.prices-compare__feature > span:nth-child(2) {
+  color: #e6e6f2;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.prices-compare__function-icon {
+  width: 20px !important;
+  height: 20px !important;
+  color: #8a8a99 !important;
+}
+
+.prices-compare__tooltip {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 12px;
+  border-color: rgba(230, 230, 242, 0.2);
+  color: #8a8a99;
+  cursor: help;
+}
+
+.prices-compare__icon {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.prices-compare__icon.is-positive {
+  color: #5ad17a !important;
+}
+
+.prices-compare__icon.is-negative {
+  color: #ed5353 !important;
+}
+
+.prices-compare__text {
+  color: #e6e6f2;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .prices-compare {
+    overflow-x: auto;
+  }
+
+  .prices-compare__table {
+    min-width: 880px;
+  }
+}
+
+@media (max-width: 600px) {
+  .prices-compare {
+    display: none !important;
+  }
+}
+
+/* Mobile activation card:
+   row 1: TG icon + price aligned to opposite edges
+   row 2: heading
+   row 3: subtitle */
+@media (max-width: 600px) {
+  .prices-activation {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-areas:
+      "icon . price"
+      "copy copy copy" !important;
+    gap: 24px 16px !important;
+    align-items: center !important;
+    padding: 24px !important;
+    border-radius: 24px !important;
+    min-height: 0 !important;
+    background: #0b0b0d !important;
+    border: 1px solid rgba(230, 230, 242, 0.12) !important;
+  }
+
+  .prices-activation > .prices-activation__icon {
+    grid-area: icon !important;
+    position: relative;
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 999px !important;
+    background:
+      radial-gradient(120% 120% at 30% 25%, rgba(152, 203, 255, 0.22) 0%, rgba(11, 11, 13, 0) 60%),
+      radial-gradient(120% 120% at 100% 100%, rgba(11, 11, 13, 0.95) 0%, rgba(11, 11, 13, 0) 60%),
+      #131319 !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(230, 230, 242, 0.06),
+      0 8px 28px rgba(11, 11, 13, 0.45) !important;
+    overflow: visible !important;
+  }
+
+  .prices-activation > .prices-activation__icon img {
+    width: 26px !important;
+    height: 26px !important;
+    transform: none !important;
+  }
+
+  .prices-activation > .prices-activation__price {
+    grid-area: price !important;
+    align-self: center;
+    color: #e6e6f2;
+    font-size: 32px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+  }
+
+  .prices-activation > .prices-activation__copy {
+    grid-area: copy !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 !important;
+  }
+
+  .prices-activation > .prices-activation__copy h3 {
+    margin: 0 !important;
+    color: #e6e6f2;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0;
+  }
+
+  .prices-activation > .prices-activation__copy p {
+    margin: 0 !important;
+    color: #8a8a99;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+
+  .prices-toggle {
+    flex-wrap: nowrap !important;
+    width: auto !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    gap: 4px !important;
+  }
+
+  .prices-toggle button {
+    flex: 0 0 auto !important;
+    padding: 0 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .prices-toggle__yearly {
     min-width: 0 !important;
-    align-self: stretch;
+    gap: 6px !important;
+  }
+
+  .prices-toggle .prices-toggle__savings {
+    flex: 0 0 auto;
+    padding-inline: 8px !important;
+    font-size: 11px !important;
   }
 }
 
@@ -9029,6 +9513,10 @@ main {
     padding: 0 24px 24px;
   }
 
+  .additionals-mobile-card__content-wrap {
+    overflow: hidden;
+  }
+
   .additionals-mobile-card__content p {
     margin: 0;
     font-size: 16px;
@@ -9073,6 +9561,183 @@ main {
     width: 100%;
     margin-top: 20px;
     justify-content: flex-start;
+  }
+}
+
+/* Numbers section - pixel-perfect fix pass */
+
+.numbers-orders__icon {
+  position: static !important;
+  inset: auto !important;
+  flex-shrink: 0;
+}
+
+.numbers-orders__divider {
+  position: static !important;
+  inset: auto !important;
+  display: flex !important;
+  align-self: center !important;
+  width: 1px !important;
+  height: 32px !important;
+  min-width: 1px;
+}
+
+.numbers-orders__card {
+  padding: 10px 14px !important;
+  grid-template-columns: 36px auto auto 1px minmax(0, 1fr) !important;
+  gap: 8px !important;
+  align-items: center !important;
+  justify-content: unset !important;
+}
+
+.numbers-orders__group--status {
+  justify-self: end;
+  text-align: right;
+}
+
+@media (max-width: 1500px) {
+  .numbers-card--orders {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  .numbers-orders {
+    width: 100% !important;
+  }
+
+  .numbers-card__text--orders {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .numbers-card--orders {
+    grid-template-columns: 1fr !important;
+    padding: 24px !important;
+    gap: 16px !important;
+    min-height: 0 !important;
+    align-items: start !important;
+  }
+
+  .numbers-orders {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .numbers-card__text--orders {
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .numbers-orders__card {
+    width: min(300px, 100%) !important;
+  }
+}
+
+.numbers-card--stat > p {
+  opacity: 1 !important;
+  color: rgba(143, 143, 157, 0.72) !important;
+}
+
+.numbers-card--stat .numbers-card__stat-head > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.numbers-card--stat .numbers-card__stat-head > div h3 {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 1599px) {
+  .numbers-card--stat .numbers-card__stat-head > div h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 430px) {
+  .numbers-card--stat .numbers-card__stat-head > div h3 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.numbers-card--stat .numbers-counter {
+  display: block;
+  font-size: 64px;
+  line-height: 1;
+}
+
+@media (max-width: 1599px) {
+  .numbers-card--stat .numbers-counter {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 430px) {
+  .numbers-card--stat .numbers-counter {
+    font-size: 40px;
+  }
+}
+
+.numbers-store-graphic {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  align-self: stretch !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.numbers-store-graphic::after {
+  display: none !important;
+}
+
+.numbers-store-graphic__inner {
+  display: none !important;
+}
+
+.numbers-store-graphic__img {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  pointer-events: none;
+}
+
+@media (max-width: 1500px) {
+  .numbers-store-graphic__img {
+    object-position: center center !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .numbers-store-graphic {
+    height: 280px !important;
+    justify-content: center !important;
+  }
+
+  .numbers-store-graphic__img {
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .numbers-store-graphic {
+    height: 240px !important;
   }
 }
 
@@ -9360,11 +10025,29 @@ main {
   inset: 6px 5px;
 }
 
-.steps-hex--mobile .steps-hex__digit,
-.steps-hex--mobile .steps-hex__check {
-  width: auto !important;
-  height: auto !important;
-}
+  .steps-hex--mobile .steps-hex__digit,
+  .steps-hex--mobile .steps-hex__check {
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .steps-hex--mobile .steps-hex__digit--1 {
+    width: 3px !important;
+    height: 15px !important;
+    transform: translate(calc(-50% - 0.5px), calc(-50% + 0.5px));
+  }
+
+  .steps-hex--mobile .steps-hex__digit--2 {
+    width: 11px !important;
+    height: 15px !important;
+    transform: translate(-50%, -50%);
+  }
+
+  .steps-hex--mobile .steps-hex__digit--3 {
+    width: 10px !important;
+    height: 15px !important;
+    transform: translate(-50%, -50%);
+  }
 
 .steps-mobile {
   display: none;
@@ -9435,13 +10118,13 @@ main {
   margin: 14px 0;
 }
 
-.steps-mobile__arrow-icon {
-  width: 20px;
-  height: 14px;
-  object-fit: contain;
-  transform: rotate(-90deg) scaleY(0.76);
-  transform-origin: center;
-}
+  .steps-mobile__arrow-icon {
+    width: 24px;
+    height: 24px;
+    color: rgba(152, 203, 255, 0.92);
+    transform: scaleX(1.08) scaleY(0.9);
+    transform-origin: center;
+  }
 
 .steps-reveal,
 .banner-reveal {

@@ -22,44 +22,12 @@ type OrderItem = {
   tone: "gold" | "blue" | "violet";
 };
 
-type StoreGraphicNode = {
-  src: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
-
 const orders: OrderItem[] = [
   { id: "ID 82931", customer: "@Ivan", amount: "€124.55", status: "Принято", icon: "/images/numbers/order-icon-wait.svg", tone: "gold" },
   { id: "ID 20471", customer: "@Alex", amount: "€56.45", status: "Отправка", icon: "/images/numbers/order-icon-sent.svg", tone: "blue" },
   { id: "ID 55109", customer: "@Anna", amount: "€96.50", status: "Оплачено", icon: "/images/numbers/order-icon-done.svg", tone: "violet" },
 ];
 
-const storeGraphicNodes: StoreGraphicNode[] = [
-  { src: "/images/figma-rebuilt/store-logo-delivery.svg", x: 96, y: 44, width: 72, height: 72 },
-  { src: "/images/figma-rebuilt/store-logo-01.svg", x: 96, y: 216, width: 72, height: 72 },
-  { src: "/images/figma-rebuilt/store-logo-02.svg", x: 268, y: 216, width: 72, height: 72 },
-  { src: "/images/figma-rebuilt/store-logo-03.svg", x: 268, y: 44, width: 72, height: 72 },
-  { src: "/images/figma-rebuilt/store-logo-04.svg", x: 186, y: 22, width: 64, height: 64 },
-  { src: "/images/figma-rebuilt/store-logo-05.svg", x: 186, y: 246, width: 64, height: 64 },
-  { src: "/images/figma-rebuilt/store-logo-06.svg", x: 74, y: 134, width: 64, height: 64 },
-  { src: "/images/figma-rebuilt/store-logo-07.svg", x: 298, y: 134, width: 64, height: 64 },
-  { src: "/images/figma-rebuilt/store-logo-08.svg", x: 362, y: 208, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-09.svg", x: 254, y: -18, width: 48, height: 48 },
-  { src: "/images/figma-rebuilt/store-logo-10.svg", x: 362, y: 84, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-11.svg", x: 34, y: 84, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-12.svg", x: 34, y: 208, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-13.svg", x: 134, y: 302, width: 48, height: 48 },
-  { src: "/images/figma-rebuilt/store-logo-14.svg", x: 254, y: 302, width: 48, height: 48 },
-  { src: "/images/figma-rebuilt/store-logo-15.svg", x: 134, y: -18, width: 48, height: 48 },
-  { src: "/images/figma-rebuilt/store-logo-16.svg", x: 406, y: 146, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-17.svg", x: -10, y: 146, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-18.svg", x: 340, y: 4, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-19.svg", x: 56, y: 4, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-20.svg", x: 340, y: 288, width: 40, height: 40 },
-  { src: "/images/figma-rebuilt/store-logo-21.svg", x: 56, y: 288, width: 40, height: 40 },
-];
 
 const stats: StatCard[] = [
   {
@@ -140,28 +108,13 @@ function OrdersAnimation() {
 function StoreGraphic() {
   return (
     <div className="numbers-store-graphic" aria-hidden="true">
-      <div className="numbers-store-graphic__inner">
-        <span className="numbers-store-graphic__light" />
-        {storeGraphicNodes.map((node) => (
-          <span
-            key={`${node.src}-${node.x}-${node.y}`}
-            className="numbers-store-graphic__node"
-            style={
-              {
-                "--node-x": `${node.x}px`,
-                "--node-y": `${node.y}px`,
-                "--node-w": `${node.width}px`,
-                "--node-h": `${node.height}px`,
-              } as CSSProperties
-            }
-          >
-            <Image src={node.src} alt="" width={node.width} height={node.height} />
-          </span>
-        ))}
-        <span className="numbers-store-graphic__center">
-          <Image src="/images/figma-rebuilt/stores-center.png" alt="" width={190} height={191} />
-        </span>
-      </div>
+      <Image
+        src="/images/numbers/stores-graphic.png"
+        alt=""
+        width={436}
+        height={332}
+        className="numbers-store-graphic__img"
+      />
     </div>
   );
 }
