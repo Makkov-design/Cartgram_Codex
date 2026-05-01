@@ -1,11 +1,13 @@
 import { Header } from "@/components/layout/Header/Header";
 import { Additionals } from "@/components/sections/Additionals/Additionals";
+import { Banner } from "@/components/sections/Banner/Banner";
 import { Features } from "@/components/sections/Features/Features";
 import { Hero } from "@/components/sections/Hero/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks/HowItWorks";
 import { Niches } from "@/components/sections/Niches/Niches";
 import { Numbers } from "@/components/sections/Numbers/Numbers";
 import { Prices } from "@/components/sections/Prices/Prices";
+import { Steps } from "@/components/sections/Steps/Steps";
 import { WhyCartgram } from "@/components/sections/WhyCartgram/WhyCartgram";
 
 const placeholderSections = [
@@ -47,6 +49,14 @@ export default function Home() {
 
       <section id="additionals" className="overflow-x-clip">
         <Additionals />
+      </section>
+
+      <section id="steps" className="overflow-x-clip">
+        <Steps />
+      </section>
+
+      <section id="banner" className="overflow-x-clip">
+        <Banner />
       </section>
 
       {placeholderSections.map((id) => (
