@@ -44,6 +44,18 @@ const mobileDigits = {
   3: "/images/steps/number-3-mobile.svg",
 } as const;
 
+const desktopDigitSizes = {
+  1: { width: 5, height: 20 },
+  2: { width: 14, height: 19 },
+  3: { width: 14, height: 20 },
+} as const;
+
+const mobileDigitSizes = {
+  1: { width: 3, height: 15 },
+  2: { width: 11, height: 15 },
+  3: { width: 10, height: 15 },
+} as const;
+
 function StepHexagon({
   done = false,
   mobile = false,
@@ -92,8 +104,8 @@ function StepHexagon({
             className="steps-hex__check"
             src={`/images/steps/check-fill-${suffix}.svg`}
             alt=""
-            fill
-            sizes="28px"
+            width={mobile ? 22 : 27}
+            height={mobile ? 16 : 20}
           />
         </>
       ) : (
@@ -106,11 +118,19 @@ function StepHexagon({
             sizes="72px"
           />
           <Image
-            className="steps-hex__digit"
+            className={`steps-hex__digit steps-hex__digit--${step}`}
             src={mobile ? mobileDigits[step as 1 | 2 | 3] : desktopDigits[step as 1 | 2 | 3]}
             alt=""
-            fill
-            sizes="20px"
+            width={
+              mobile
+                ? mobileDigitSizes[step as 1 | 2 | 3].width
+                : desktopDigitSizes[step as 1 | 2 | 3].width
+            }
+            height={
+              mobile
+                ? mobileDigitSizes[step as 1 | 2 | 3].height
+                : desktopDigitSizes[step as 1 | 2 | 3].height
+            }
           />
         </>
       )}
@@ -130,7 +150,11 @@ function DesktopStepCard({
     step === 1 ? "/images/steps/line-1-desktop.svg" : "/images/steps/line-2-desktop.svg";
 
   return (
-    <article className={`steps-card${isFinal ? " steps-card--final" : ""}`}>
+    <article
+      className={`steps-card${isFinal ? " steps-card--final" : ""}${
+        step === 1 ? " steps-card--with-action" : ""
+      }`}
+    >
       {isFinal ? (
         <Image
           className="steps-card__effect"
