@@ -9150,14 +9150,15 @@ main {
 .steps-card {
   display: flex;
   width: 100%;
-  height: 359px;
+  min-height: 359px;
+  height: auto;
   flex-direction: column;
   gap: 24px;
   padding: 40px;
 }
 
 .steps-card--with-action {
-  min-height: 372px;
+  min-height: 396px;
 }
 
 .steps-card::before,
@@ -9327,7 +9328,19 @@ main {
 }
 
 .steps-hex__digit--1 {
+  width: 5px !important;
+  height: 20px !important;
   transform: translate(calc(-50% - 1px), calc(-50% + 0.5px));
+}
+
+.steps-hex__digit--2 {
+  width: 14px !important;
+  height: 19px !important;
+}
+
+.steps-hex__digit--3 {
+  width: 14px !important;
+  height: 20px !important;
 }
 
 .steps-hex--mobile .steps-hex__stroke--outer {
@@ -9559,7 +9572,8 @@ main {
   }
 
   .steps-card {
-    height: 348px;
+    min-height: 348px;
+    height: auto;
     padding: 32px 28px;
   }
 
@@ -9596,7 +9610,8 @@ main {
   }
 
   .steps-card {
-    height: 344px;
+    min-height: 344px;
+    height: auto;
     padding: 26px 20px;
   }
 
