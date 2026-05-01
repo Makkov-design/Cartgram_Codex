@@ -14,33 +14,31 @@ const CONTACT_LINKS = [
     icon: "/images/footer/icon-mail.svg",
     title: "Email us at",
     label: "info@cartgram",
-    href: "#",
   },
   {
     icon: "/images/footer/icon-chat.svg",
     title: "Chat with our",
     label: "Support Team",
-    href: "#",
   },
 ];
 
 const LEGAL_LINKS = [
-  { href: "#", label: "Terms of Use" },
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "AML / KYC Policy" },
-  { href: "#", label: "Risk Disclosure" },
+  { label: "Terms of Use" },
+  { label: "Privacy Policy" },
+  { label: "AML / KYC Policy" },
+  { label: "Risk Disclosure" },
 ];
 
 const SOCIAL_LINKS = [
-  { href: "#", icon: "/images/footer/social-telegram.svg", label: "Telegram", mobile: true },
-  { href: "#", icon: "/images/footer/social-x.svg", label: "X", mobile: true },
-  { href: "#", icon: "/images/footer/social-linkedin.svg", label: "LinkedIn", mobile: true },
-  { href: "#", icon: "/images/footer/social-discord.svg", label: "Discord", mobile: true },
-  { href: "#", icon: "/images/footer/social-tiktok.svg", label: "TikTok", mobile: false },
-  { href: "#", icon: "/images/footer/social-youtube.svg", label: "YouTube", mobile: false },
-  { href: "#", icon: "/images/footer/social-instagram.svg", label: "Instagram", mobile: false },
-  { href: "#", icon: "/images/footer/social-facebook.svg", label: "Facebook", mobile: false },
-  { href: "#", icon: "/images/footer/social-threads.svg", label: "Threads", mobile: false },
+  { icon: "/images/footer/social-telegram.svg", label: "Telegram", mobile: true },
+  { icon: "/images/footer/social-x.svg", label: "X", mobile: true },
+  { icon: "/images/footer/social-linkedin.svg", label: "LinkedIn", mobile: true },
+  { icon: "/images/footer/social-discord.svg", label: "Discord", mobile: true },
+  { icon: "/images/footer/social-tiktok.svg", label: "TikTok", mobile: false },
+  { icon: "/images/footer/social-youtube.svg", label: "YouTube", mobile: false },
+  { icon: "/images/footer/social-instagram.svg", label: "Instagram", mobile: false },
+  { icon: "/images/footer/social-facebook.svg", label: "Facebook", mobile: false },
+  { icon: "/images/footer/social-threads.svg", label: "Threads", mobile: false },
 ];
 
 export function Footer() {
@@ -70,14 +68,14 @@ export function Footer() {
 
             <div className={styles.socials}>
               {SOCIAL_LINKS.map((item) => (
-                <a
+                <button
                   key={item.label}
-                  href={item.href}
+                  type="button"
                   aria-label={item.label}
-                  className={`${styles.socialLink} ${item.mobile ? styles.socialMobile : ""}`}
+                  className={`${styles.resetButton} ${styles.socialLink} ${item.mobile ? styles.socialMobile : ""}`}
                 >
                   <Image src={item.icon} alt="" width={32} height={32} className={styles.socialIcon} />
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -98,7 +96,11 @@ export function Footer() {
               <h3>Контакты</h3>
               <div className={styles.contactList}>
                 {CONTACT_LINKS.map((item) => (
-                  <a key={item.label} href={item.href} className={styles.contactItem}>
+                  <button
+                    key={item.label}
+                    type="button"
+                    className={`${styles.resetButton} ${styles.contactItem}`}
+                  >
                     <span className={styles.contactIconWrap} aria-hidden="true">
                       <Image src={item.icon} alt="" width={20} height={20} className={styles.contactIcon} />
                     </span>
@@ -106,7 +108,7 @@ export function Footer() {
                       <span>{item.title}</span>
                       <strong>{item.label}</strong>
                     </span>
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
@@ -115,9 +117,13 @@ export function Footer() {
               <h3>Legal</h3>
               <div className={styles.linkList}>
                 {LEGAL_LINKS.map((item) => (
-                  <a key={item.label} href={item.href} className={styles.textLink}>
+                  <button
+                    key={item.label}
+                    type="button"
+                    className={`${styles.resetButton} ${styles.textLink}`}
+                  >
                     {item.label}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
@@ -130,7 +136,7 @@ export function Footer() {
             <p>Копирование текста или его части возможно только с разрешения правообладателя.</p>
           </div>
 
-          <a href="#hero" className={styles.backToTop}>
+          <button type="button" className={`${styles.resetButton} ${styles.backToTop}`}>
             <span>Наверх</span>
             <Image
               src="/images/footer/icon-arrow-up.svg"
@@ -139,7 +145,7 @@ export function Footer() {
               height={16}
               className={styles.backToTopIcon}
             />
-          </a>
+          </button>
         </div>
       </div>
     </footer>
