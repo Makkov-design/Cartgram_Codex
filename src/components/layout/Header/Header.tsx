@@ -55,22 +55,24 @@ export function Header() {
           ].join(" ")}
           style={{ transitionDelay: "180ms" }}
         >
-          <Image
-            src="/images/logos/cartgram-logo-white.svg"
-            alt="Cartgram"
-            width={181}
-            height={28}
-            priority
-            className="hidden h-7 w-[181px] shrink-0 md:block"
-          />
-          <Image
-            src="/images/logos/cartgram-logomark-white.svg"
-            alt="Cartgram"
-            width={28}
-            height={28}
-            priority
-            className="block h-7 w-7 shrink-0 md:hidden"
-          />
+          <a href="#hero" aria-label="Вернуться в начало сайта" className="shrink-0">
+            <Image
+              src="/images/logos/cartgram-logo-white.svg"
+              alt="Cartgram"
+              width={181}
+              height={28}
+              priority
+              className="hidden h-7 w-[181px] shrink-0 md:block"
+            />
+            <Image
+              src="/images/logos/cartgram-logomark-white.svg"
+              alt="Cartgram"
+              width={28}
+              height={28}
+              priority
+              className="block h-7 w-7 shrink-0 md:hidden"
+            />
+          </a>
 
           <nav
             className={[

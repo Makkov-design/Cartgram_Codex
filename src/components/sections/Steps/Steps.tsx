@@ -50,12 +50,6 @@ const desktopDigitSizes = {
   3: { width: 14, height: 20 },
 } as const;
 
-const mobileDigitSizes = {
-  1: { width: 3, height: 15 },
-  2: { width: 11, height: 15 },
-  3: { width: 10, height: 15 },
-} as const;
-
 function StepHexagon({
   done = false,
   mobile = false,
@@ -121,16 +115,8 @@ function StepHexagon({
             className={`steps-hex__digit steps-hex__digit--${step}`}
             src={mobile ? mobileDigits[step as 1 | 2 | 3] : desktopDigits[step as 1 | 2 | 3]}
             alt=""
-            width={
-              mobile
-                ? mobileDigitSizes[step as 1 | 2 | 3].width
-                : desktopDigitSizes[step as 1 | 2 | 3].width
-            }
-            height={
-              mobile
-                ? mobileDigitSizes[step as 1 | 2 | 3].height
-                : desktopDigitSizes[step as 1 | 2 | 3].height
-            }
+            width={desktopDigitSizes[step as 1 | 2 | 3].width}
+            height={desktopDigitSizes[step as 1 | 2 | 3].height}
           />
         </>
       )}
@@ -322,7 +308,13 @@ export function Steps() {
                   aria-hidden="true"
                   style={{ "--steps-delay": `${0.2 + index * 0.06}s` } as CSSProperties}
                 >
-                  <Image src="/images/steps/arrow-fill-mobile.svg" alt="" width={20} height={20} />
+                  <Image
+                    className="steps-mobile__arrow-icon"
+                    src="/images/steps/arrow-fill-mobile.svg"
+                    alt=""
+                    width={20}
+                    height={20}
+                  />
                 </div>
               ) : null}
             </div>

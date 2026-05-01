@@ -2,18 +2,18 @@ import { Header } from "@/components/layout/Header/Header";
 import { Additionals } from "@/components/sections/Additionals/Additionals";
 import { Banner } from "@/components/sections/Banner/Banner";
 import { Features } from "@/components/sections/Features/Features";
+import { Faq } from "@/components/sections/Faq/Faq";
+import { Footer } from "@/components/sections/Footer/Footer";
 import { Hero } from "@/components/sections/Hero/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks/HowItWorks";
 import { Niches } from "@/components/sections/Niches/Niches";
 import { Numbers } from "@/components/sections/Numbers/Numbers";
 import { Prices } from "@/components/sections/Prices/Prices";
 import { Steps } from "@/components/sections/Steps/Steps";
+import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
 import { WhyCartgram } from "@/components/sections/WhyCartgram/WhyCartgram";
 
-const placeholderSections = [
-  "testimonials",
-  "faq",
-];
+const placeholderSections: string[] = [];
 
 export default function Home() {
   return (
@@ -58,6 +58,16 @@ export default function Home() {
       <section id="banner" className="overflow-x-clip">
         <Banner />
       </section>
+
+      <section id="testimonials" className="overflow-x-clip">
+        <Testimonials />
+      </section>
+
+      <section id="faq">
+        <Faq />
+      </section>
+
+      <Footer />
 
       {placeholderSections.map((id) => (
         <section key={id} id={id} aria-hidden="true" className="h-px" />

@@ -3015,7 +3015,7 @@ main {
   z-index: -2;
   width: 751.276px;
   height: 654.104px;
-  transform: translateX(-1049px);
+  transform: translateX(-1549px);
   background: linear-gradient(
     90deg,
     var(--color-brand-primary) 0%,
@@ -3023,7 +3023,7 @@ main {
     var(--color-brand-tertiary) 100%
   );
   filter: blur(250px);
-  opacity: 0.03;
+  opacity: 0.015;
   pointer-events: none;
 }
 
@@ -3269,6 +3269,11 @@ main {
     margin-top: 96px;
     padding-right: clamp(24px, 5.55vw, 80px) !important;
     padding-left: clamp(24px, 5.55vw, 80px) !important;
+  }
+
+  .niches-bg-light {
+    transform: translateX(-1549px);
+    opacity: 0.015;
   }
 
   .niches-title {
@@ -9430,6 +9435,14 @@ main {
   margin: 14px 0;
 }
 
+.steps-mobile__arrow-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: contain;
+  transform: rotate(-90deg) scaleY(0.76);
+  transform-origin: center;
+}
+
 .steps-reveal,
 .banner-reveal {
   opacity: 0;
@@ -9548,17 +9561,24 @@ main {
   inset: 0 0 0 auto;
   z-index: 1;
   width: min(72.2%, 1270px);
+  overflow: hidden;
   pointer-events: none;
 }
 
 .banner-card__visual-desktop,
 .banner-card__visual-mobile {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: right center;
 }
 
 .banner-card__visual-desktop {
   display: block;
+  left: -2px;
+  width: calc(100% + 2px);
 }
 
 .banner-card__visual-mobile {
@@ -9770,7 +9790,9 @@ main {
 
   .banner-card__visual-mobile {
     object-fit: cover;
-    object-position: center top;
+    object-position: calc(50% - 78px) top;
+    transform: scale(1.24);
+    transform-origin: center top;
   }
 
   .banner-card__content {

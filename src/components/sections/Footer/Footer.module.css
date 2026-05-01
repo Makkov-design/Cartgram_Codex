@@ -1,0 +1,391 @@
+.section {
+  padding: 0 8px 8px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 40px;
+  background:
+    linear-gradient(180deg, rgba(31, 31, 38, 0.98) 0%, rgba(23, 23, 26, 0.98) 100%),
+    #17171a;
+  padding: 80px 72px 40px;
+  isolation: isolate;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -218px;
+  left: -259px;
+  width: 589px;
+  height: 495px;
+  background: url("/images/logos/cartgram-logomark-white.svg") no-repeat center / contain;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.11) 0 1px, transparent 1.4px);
+  background-position: 56% 12%;
+  background-size: 8px 8px;
+  opacity: 0.22;
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 24%, rgba(0, 0, 0, 1) 46%, rgba(0, 0, 0, 0.55) 72%, transparent 100%);
+  z-index: 0;
+}
+
+.content,
+.bottomRow {
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.brandColumn {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logoDesktop {
+  width: 414px;
+  height: 64px;
+}
+
+.logoMobile {
+  display: none;
+}
+
+.tagline {
+  margin: 0;
+  color: #595966;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.socialLink {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.88;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.socialLink:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  min-width: 0;
+}
+
+.linkColumn {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.linkColumn h3 {
+  margin: 0;
+  padding: 0 8px;
+  color: #f5f5f5;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  color: #8a8a99;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+
+.textLink:hover {
+  color: #e6e6f2;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+}
+
+.contactIconWrap {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.contactText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contactText span {
+  padding: 0 8px;
+  color: #e6e6f2;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.contactText strong {
+  padding: 4px 8px;
+  color: #8a8a99;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+
+.contactItem:hover .contactText strong {
+  color: #e6e6f2;
+}
+
+.bottomRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.legalNote {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  color: rgba(138, 138, 153, 0.5);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.legalNote p {
+  margin: 0;
+}
+
+.backToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: center;
+  justify-self: start;
+  padding: 4px 8px;
+  color: #8a8a99;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+
+.backToTop:hover {
+  color: #e6e6f2;
+}
+
+.backToTopIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+@media (max-width: 1500px) {
+  .card {
+    padding-right: 72px;
+    padding-left: 72px;
+  }
+
+  .logoDesktop {
+    width: 360px;
+    height: auto;
+  }
+}
+
+@media (max-width: 1180px) {
+  .card {
+    padding: 56px 32px 32px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .brandColumn {
+    gap: 32px;
+  }
+
+  .linksGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .bottomRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 820px) {
+  .card {
+    padding: 24px;
+  }
+
+  .card::before {
+    top: -140px;
+    left: -178px;
+    width: 430px;
+    height: 360px;
+    opacity: 0.09;
+  }
+
+  .pattern {
+    display: none;
+  }
+
+  .logoDesktop {
+    display: none;
+  }
+
+  .logoMobile {
+    display: block;
+    width: 100%;
+    max-width: 282px;
+    height: auto;
+  }
+
+  .logoBlock {
+    gap: 16px;
+  }
+
+  .tagline {
+    font-size: 16px;
+  }
+
+  .socials {
+    gap: 16px;
+  }
+
+  .socialLink {
+    width: 32px;
+    height: 32px;
+  }
+
+  .socialIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .linksGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .linkColumn:first-child {
+    display: none;
+  }
+
+  .linkColumn {
+    gap: 16px;
+  }
+
+  .contactList,
+  .linkList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bottomRow {
+    margin-top: 24px;
+  }
+
+  .backToTop {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+  }
+
+  .card {
+    min-height: 546px;
+    padding: 24px;
+  }
+
+  .brandColumn {
+    gap: 40px;
+  }
+
+  .socialLink:not(.socialMobile) {
+    display: none;
+  }
+
+  .legalNote {
+    width: 100%;
+  }
+}

@@ -89,22 +89,26 @@ export function Banner() {
             </div>
 
             <div className="banner-card__visual" aria-hidden="true">
-              <Image
+              <video
                 className="banner-card__visual-desktop"
-                src="/images/banner/banner-visual-desktop.png"
-                alt=""
-                fill
-                sizes="(max-width: 1024px) 100vw, 1270px"
-                priority={false}
-              />
-              <Image
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              >
+                <source src="/videos/banner_video.mp4" type="video/mp4" />
+              </video>
+              <video
                 className="banner-card__visual-mobile"
-                src="/images/banner/banner-visual-mobile.png"
-                alt=""
-                fill
-                sizes="100vw"
-                priority={false}
-              />
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              >
+                <source src="/videos/banner_video.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </article>
