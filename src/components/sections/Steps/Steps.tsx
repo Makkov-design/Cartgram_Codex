@@ -12,19 +12,23 @@ type StepItem = {
 const steps: StepItem[] = [
   {
     title: "Зарегистрируйтесь в Cartgram, выберите тариф и активируйте доступ",
-    description: "Создайте аккаунт за минуту, оплатите тариф и сразу получите доступ к системе.",
+    description:
+      "Создайте аккаунт за минуту, оплатите тариф и сразу получите доступ к системе.",
   },
   {
     title: "Создайте Telegram Mini-App в 1 клик",
-    description: "Mini-App автоматически подключится к системе и будет готов к запуску магазина.",
+    description:
+      "Mini-App автоматически подключится к системе и будет готов к запуску магазина.",
   },
   {
     title: "Настройте магазин под себя, добавьте товары в CRM",
-    description: "Название, оформление, способы доставки и каталог сразу появятся внутри mini-app.",
+    description:
+      "Название, оформление, способы доставки и каталог сразу появятся внутри mini-app.",
   },
   {
-    title: "Отправьте ссылку клиентам и начните продажи — магазин запущен!",
-    description: "Рассылка, пост или реклама — и первые заказы уже поступают в CRM Cartgram.",
+    title: "Отправьте ссылку клиентам и начните продажи - магазин запущен!",
+    description:
+      "Рассылка, пост или реклама - и первые заказы уже поступают в CRM Cartgram.",
   },
 ];
 
@@ -153,7 +157,7 @@ function DesktopStepCard({
 
       {step === 1 ? (
         <div className="steps-card__action">
-          <Button className="steps-card__button" size="small" icon="arrow">
+          <Button className="steps-card__button" size="large" icon="arrow">
             Создать магазин
           </Button>
         </div>
@@ -191,7 +195,7 @@ function MobileStepCard({
       <p>{item.description}</p>
 
       {step === 1 ? (
-        <Button className="steps-mobile-card__button" size="small" icon="arrow">
+        <Button className="steps-mobile-card__button" size="large" icon="arrow">
           Создать магазин
         </Button>
       ) : null}
@@ -246,14 +250,21 @@ export function Steps() {
   return (
     <section ref={sectionRef} className="steps-section container-1920 px-20">
       <div className="section-shell steps-shell">
-        <div className="steps-pattern steps-reveal" aria-hidden="true" style={{ "--steps-delay": "0s" } as CSSProperties} />
+        <div
+          className="steps-pattern steps-reveal"
+          aria-hidden="true"
+          style={{ "--steps-delay": "0s" } as CSSProperties}
+        />
 
         <header className="steps-header">
           <h2 className="steps-reveal" style={{ "--steps-delay": "0.04s" } as CSSProperties}>
             Как запустить свой магазин <span className="gradient-text">за 4 шага</span>?
           </h2>
-          <p className="steps-header__desktop steps-reveal" style={{ "--steps-delay": "0.1s" } as CSSProperties}>
-            Всего 4 шага — и ваш магазин готов принимать заказы через Telegram.
+          <p
+            className="steps-header__desktop steps-reveal"
+            style={{ "--steps-delay": "0.1s" } as CSSProperties}
+          >
+            Всего 4 шага - и ваш магазин готов принимать заказы через Telegram.
             <br />
             Запуск занимает минуты, а не недели.
           </p>

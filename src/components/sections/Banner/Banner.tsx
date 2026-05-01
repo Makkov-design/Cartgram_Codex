@@ -51,7 +51,10 @@ export function Banner() {
   return (
     <section ref={sectionRef} className="banner-section container-1920 px-20">
       <div className="section-shell banner-shell">
-        <article className="banner-card banner-reveal" style={{ "--banner-delay": "0.08s" } as CSSProperties}>
+        <article
+          className="banner-card banner-reveal"
+          style={{ "--banner-delay": "0.08s" } as CSSProperties}
+        >
           <div className="banner-card__pattern" aria-hidden="true" />
           <div className="banner-card__line-lights" aria-hidden="true">
             <Image
@@ -71,34 +74,37 @@ export function Banner() {
           </div>
 
           <div className="banner-card__inner">
-            <div className="banner-card__visual">
-              <Image
-                className="banner-card__visual-desktop"
-                src="/images/banner/banner-visual-desktop.webp"
-                alt=""
-                fill
-                sizes="(max-width: 1024px) 100vw, 700px"
-              />
-              <Image
-                className="banner-card__visual-mobile"
-                src="/images/banner/banner-visual-mobile.webp"
-                alt=""
-                fill
-                sizes="100vw"
-              />
-            </div>
-
             <div className="banner-card__content">
               <h2>
-                Запусти магазин в Telegram Mini-App за 5 минут <span>без кода и разработчиков</span>
+                Запусти магазин в Telegram Mini-App за 5 минут{" "}
+                <span>без кода и разработчиков</span>
               </h2>
               <p>
-                Всё управление через CRM Cartgram: добавляешь товары и категории — они сразу
+                Все управление через CRM Cartgram: добавляешь товары и категории - они сразу
                 появляются в mini-app, а заказы автоматически поступают в систему.
               </p>
               <Button className="banner-card__button" variant="primary" size="large" icon="arrow">
                 Запустить за 5 минут
               </Button>
+            </div>
+
+            <div className="banner-card__visual" aria-hidden="true">
+              <Image
+                className="banner-card__visual-desktop"
+                src="/images/banner/banner-visual-desktop.png"
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 1270px"
+                priority={false}
+              />
+              <Image
+                className="banner-card__visual-mobile"
+                src="/images/banner/banner-visual-mobile.png"
+                alt=""
+                fill
+                sizes="100vw"
+                priority={false}
+              />
             </div>
           </div>
         </article>
