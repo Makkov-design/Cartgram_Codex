@@ -132,14 +132,14 @@ const additionals: AdditionalItem[] = [
 ];
 
 const iconMap: Record<AdditionalItem["icon"], string> = {
-  theme: "/images/additionals/icon-theme-fill.svg",
-  launch: "/images/additionals/icon-launch.svg",
-  traffic: "/images/additionals/icon-traffic.svg",
-  warehouse: "/images/additionals/icon-warehouse.svg",
-  staff: "/images/additionals/icon-staff.svg",
-  tasks: "/images/additionals/icon-tasks.svg",
-  api: "/images/additionals/icon-api.svg",
-  custom: "/images/additionals/icon-custom.svg",
+  theme: "/images/additionals/ui-kit/icon-ui-palette.svg",
+  launch: "/images/additionals/ui-kit/icon-ui-rocket-launch.svg",
+  traffic: "/images/additionals/ui-kit/icon-ui-ads-click.svg",
+  warehouse: "/images/additionals/ui-kit/icon-ui-warehouse.svg",
+  staff: "/images/additionals/ui-kit/icon-ui-person-add.svg",
+  tasks: "/images/additionals/ui-kit/icon-ui-task-alt.svg",
+  api: "/images/additionals/ui-kit/icon-ui-api.svg",
+  custom: "/images/additionals/ui-kit/icon-ui-code-blocks.svg",
 };
 
 function AdditionalIcon({ type }: { type: AdditionalItem["icon"] }) {
@@ -178,18 +178,19 @@ function AdditionalCard({
         </div>
       ) : null}
 
-      <div className="additionals-card__icon-wrap">
-        <div className="additionals-card__icon-pattern" aria-hidden="true" />
-        <div className="additionals-card__icon-circle">
-          <AdditionalIcon type={item.icon} />
+      <div className="additionals-card__head">
+        <div className="additionals-card__icon-wrap">
+          <span className="additionals-card__icon-dots" aria-hidden="true" />
+          <div className="additionals-card__icon-pattern" aria-hidden="true" />
+          <div className="additionals-card__icon-circle">
+            <AdditionalIcon type={item.icon} />
+          </div>
+          <div className="additionals-card__icon-glow" aria-hidden="true" />
         </div>
-        <div className="additionals-card__icon-glow" aria-hidden="true" />
+        <h3 className="additionals-card__title">{item.title}</h3>
       </div>
 
-      <div className="additionals-card__copy">
-        <h3>{item.title}</h3>
-        <p>{item.description}</p>
-      </div>
+      <p className="additionals-card__desc">{item.description}</p>
 
       <div className="additionals-card__footer">
         {item.price.kind === "price" ? (
@@ -198,7 +199,6 @@ function AdditionalCard({
               <strong>{item.price.amount}</strong>
               <span>{item.price.suffix}</span>
             </div>
-            <small>{item.price.note}</small>
           </div>
         ) : (
           <Button className="additionals-card__cta" variant="secondary" size="large" icon="arrow">
@@ -232,6 +232,7 @@ function MobileAccordionItem({
       >
         <div className="additionals-mobile-card__left">
           <div className="additionals-mobile-card__icon-wrap">
+            <span className="additionals-card__icon-dots" aria-hidden="true" />
             <div className="additionals-mobile-card__icon-pattern" aria-hidden="true" />
             <div className="additionals-mobile-card__icon-circle">
               <AdditionalIcon type={item.icon} />
@@ -241,14 +242,8 @@ function MobileAccordionItem({
         </div>
 
         <span className="additionals-mobile-card__toggle" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M7 10l5 5 5-5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
           </svg>
         </span>
       </button>
@@ -272,7 +267,6 @@ function MobileAccordionItem({
                     <strong>{item.price.amount}</strong>
                     <span>{item.price.suffix}</span>
                   </div>
-                  <small>{item.price.note}</small>
                 </div>
               ) : (
                 <Button

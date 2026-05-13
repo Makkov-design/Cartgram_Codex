@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Image from "next/image";
 import { ArrowRightIcon } from "@/components/ui/icons/ArrowRightIcon";
 import styles from "./Testimonials.module.css";
 
@@ -8,6 +9,7 @@ type TestimonialItem = {
   videoSrc: string;
   name: string;
   about: string;
+  avatarSrc?: string;
 };
 
 const TESTIMONIALS: TestimonialItem[] = [
@@ -15,59 +17,71 @@ const TESTIMONIALS: TestimonialItem[] = [
     videoSrc: "/videos/testimonials/feedback 1.mp4",
     name: "Алексей",
     about: "Владелец интернет-магазина одежды",
+    avatarSrc: "/images/testimonials/avatars/aleksei.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 2.mp4",
     name: "Мария",
     about: "Владелец интернет-магазина одежды",
+    avatarSrc: "/images/testimonials/avatars/maria.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 3.mp4",
     name: "Дмитрий",
     about: "Руководитель сервисного бизнеса",
+    avatarSrc: "/images/testimonials/avatars/dmitrii.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 4.mp4",
     name: "Сергей “Excel” Плотников",
     about: "Бывший жрец таблиц",
+    avatarSrc: "/images/testimonials/avatars/sergei.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 5.mp4",
     name: "Иван “Складской”",
     about: "Владелец e-commerce проекта",
+    avatarSrc: "/images/testimonials/avatars/ivan.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 6.mp4",
     name: "Максим “На парковке” Ковалёв",
     about: "Серьезный владелец e-commerce бизнеса",
+    avatarSrc: "/images/testimonials/avatars/maksim.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 7.mp4",
     name: "Магистр Альдрик из Бухгалтерии",
     about: "Алхимик и торговец",
+    avatarSrc: "/images/testimonials/avatars/aldrik.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 8.mp4",
     name: "OPT-47 (Optimus Protocol Unit)",
     about: "Гуманоидный аналитический робот Tesla",
+    avatarSrc: "/images/testimonials/avatars/opt47.png",
   },
   {
     videoSrc: "/videos/testimonials/feedback 9.mp4",
     name: "Zlörg Vantaxx",
     about: "Верховный оператор межгалактической торговли",
+    avatarSrc: "/images/testimonials/avatars/zlorg.png",
   },
 ];
 
 const PAGE_STARTS = [0, 2, 4, 6, 8];
+const MOBILE_PAGE_STARTS = TESTIMONIALS.map((_, index) => index);
 
 function QuoteIcon() {
   return (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" className={styles.quoteIcon}>
-      <path
-        d="M26.667 13.333H16c-2.946 0-5.333 2.388-5.333 5.334v18.666C10.667 40.279 13.054 42.667 16 42.667h10.667c2.945 0 5.333-2.388 5.333-5.334V26.667c0-2.945-2.388-5.334-5.333-5.334h-5.334v-2.666c0-1.473 1.194-2.667 2.667-2.667h2.667V13.333ZM53.333 13.333H42.667c-2.946 0-5.334 2.388-5.334 5.334v18.666c0 2.946 2.388 5.334 5.334 5.334h10.666c2.946 0 5.334-2.388 5.334-5.334V26.667c0-2.945-2.388-5.334-5.334-5.334H48v-2.666c0-1.473 1.194-2.667 2.667-2.667h2.666V13.333Z"
-        fill="currentColor"
-      />
-    </svg>
+    <Image
+      src="/images/testimonials/quote-left.svg"
+      alt=""
+      width={100}
+      height={100}
+      aria-hidden="true"
+      className={styles.quoteIcon}
+    />
   );
 }
 
@@ -93,11 +107,14 @@ export function Testimonials() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [isDesktopHoverMode, setIsDesktopHoverMode] = useState(false);
+  const [isMobileSliderMode, setIsMobileSliderMode] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const activeIndex = isDesktopHoverMode ? hoveredIndex : selectedIndex;
+  const pageStarts = isMobileSliderMode ? MOBILE_PAGE_STARTS : PAGE_STARTS;
+  const currentPageIndex = Math.min(currentPage, pageStarts.length - 1);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -128,10 +145,12 @@ export function Testimonials() {
     }
 
     const mediaQuery = window.matchMedia("(min-width: 1181px) and (hover: hover) and (pointer: fine)");
+    const mobileSliderQuery = window.matchMedia("(max-width: 1180px)");
 
     const syncMode = () => {
       const nextIsDesktop = mediaQuery.matches;
       setIsDesktopHoverMode(nextIsDesktop);
+      setIsMobileSliderMode(mobileSliderQuery.matches);
 
       if (nextIsDesktop) {
         setSelectedIndex(null);
@@ -142,9 +161,11 @@ export function Testimonials() {
 
     syncMode();
     mediaQuery.addEventListener("change", syncMode);
+    mobileSliderQuery.addEventListener("change", syncMode);
 
     return () => {
       mediaQuery.removeEventListener("change", syncMode);
+      mobileSliderQuery.removeEventListener("change", syncMode);
     };
   }, []);
 
@@ -156,6 +177,8 @@ export function Testimonials() {
 
       if (index === activeIndex) {
         video.currentTime = 0;
+        video.muted = false;
+        video.volume = 1;
         const playPromise = video.play();
         if (playPromise && typeof playPromise.catch === "function") {
           playPromise.catch(() => undefined);
@@ -164,6 +187,7 @@ export function Testimonials() {
       }
 
       video.pause();
+      video.muted = true;
       video.currentTime = 0;
     });
   }, [activeIndex]);
@@ -195,7 +219,7 @@ export function Testimonials() {
   const handlePageChange = (nextPage: number) => {
     setHoveredIndex(null);
     setSelectedIndex(null);
-    setCurrentPage(Math.max(0, Math.min(PAGE_STARTS.length - 1, nextPage)));
+    setCurrentPage(Math.max(0, Math.min(pageStarts.length - 1, nextPage)));
   };
 
   return (
@@ -219,22 +243,22 @@ export function Testimonials() {
             <button
               type="button"
               className={styles.navButton}
-              onClick={() => handlePageChange(currentPage - 1)}
+              onClick={() => handlePageChange(currentPageIndex - 1)}
               aria-label="Предыдущие отзывы"
-              disabled={currentPage === 0}
+              disabled={currentPageIndex === 0}
             >
               <ArrowRightIcon className={styles.navIconLeft} />
             </button>
 
             <div className={styles.pagination} aria-label="Навигация по отзывам">
-              {PAGE_STARTS.map((_, pageIndex) => (
+              {pageStarts.map((_, pageIndex) => (
                 <button
                   key={pageIndex}
                   type="button"
-                  className={`${styles.paginationDot} ${pageIndex === currentPage ? styles.paginationDotActive : ""}`}
+                  className={`${styles.paginationDot} ${pageIndex === currentPageIndex ? styles.paginationDotActive : ""}`}
                   onClick={() => handlePageChange(pageIndex)}
                   aria-label={`Перейти к слайду ${pageIndex + 1}`}
-                  aria-pressed={pageIndex === currentPage}
+                  aria-pressed={pageIndex === currentPageIndex}
                 />
               ))}
             </div>
@@ -242,9 +266,9 @@ export function Testimonials() {
             <button
               type="button"
               className={styles.navButton}
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => handlePageChange(currentPageIndex + 1)}
               aria-label="Следующие отзывы"
-              disabled={currentPage === PAGE_STARTS.length - 1}
+              disabled={currentPageIndex === pageStarts.length - 1}
             >
               <ArrowRightIcon className={styles.navIconRight} />
             </button>
@@ -260,7 +284,7 @@ export function Testimonials() {
           <div className={styles.sliderViewport}>
             <div
               className={styles.sliderTrack}
-              style={{ "--testimonials-offset": PAGE_STARTS[currentPage] } as CSSProperties}
+              style={{ "--testimonials-offset": pageStarts[currentPageIndex] } as CSSProperties}
             >
               {TESTIMONIALS.map((item, index) => {
                 const isActive = activeIndex === index;
@@ -282,7 +306,6 @@ export function Testimonials() {
                         }}
                         className={styles.video}
                         src={item.videoSrc}
-                        muted
                         loop
                         playsInline
                         preload="metadata"
@@ -297,7 +320,19 @@ export function Testimonials() {
 
                       <span className={`${styles.meta} ${isActive ? styles.metaActive : ""}`}>
                         <span className={styles.avatar} aria-hidden="true">
-                          <span className={styles.avatarInitials}>{getInitials(item.name)}</span>
+                          {item.avatarSrc ? (
+                            <Image
+                              className={styles.avatarImage}
+                              src={item.avatarSrc}
+                              alt=""
+                              width={56}
+                              height={56}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          ) : (
+                            <span className={styles.avatarInitials}>{getInitials(item.name)}</span>
+                          )}
                         </span>
                         <span className={styles.metaText}>
                           <strong>{item.name}</strong>
@@ -315,22 +350,22 @@ export function Testimonials() {
             <button
               type="button"
               className={styles.navButton}
-              onClick={() => handlePageChange(currentPage - 1)}
+              onClick={() => handlePageChange(currentPageIndex - 1)}
               aria-label="Предыдущие отзывы"
-              disabled={currentPage === 0}
+              disabled={currentPageIndex === 0}
             >
               <ArrowRightIcon className={styles.navIconLeft} />
             </button>
 
             <div className={styles.pagination} aria-label="Навигация по отзывам">
-              {PAGE_STARTS.map((_, pageIndex) => (
+              {pageStarts.map((_, pageIndex) => (
                 <button
                   key={pageIndex}
                   type="button"
-                  className={`${styles.paginationDot} ${pageIndex === currentPage ? styles.paginationDotActive : ""}`}
+                  className={`${styles.paginationDot} ${pageIndex === currentPageIndex ? styles.paginationDotActive : ""}`}
                   onClick={() => handlePageChange(pageIndex)}
                   aria-label={`Перейти к слайду ${pageIndex + 1}`}
-                  aria-pressed={pageIndex === currentPage}
+                  aria-pressed={pageIndex === currentPageIndex}
                 />
               ))}
             </div>
@@ -338,9 +373,9 @@ export function Testimonials() {
             <button
               type="button"
               className={styles.navButton}
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => handlePageChange(currentPageIndex + 1)}
               aria-label="Следующие отзывы"
-              disabled={currentPage === PAGE_STARTS.length - 1}
+              disabled={currentPageIndex === pageStarts.length - 1}
             >
               <ArrowRightIcon className={styles.navIconRight} />
             </button>

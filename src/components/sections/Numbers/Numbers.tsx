@@ -11,18 +11,10 @@ type StatCard = {
   icon: string;
   accent: string;
   delay: string;
+  hasBgDots?: boolean;
 };
 
-type OrderItem = {
-  id: string;
-  customer: string;
-  amount: string;
-  status: string;
-  icon: string;
-  tone: "gold" | "blue" | "violet";
-};
-
-const orders: OrderItem[] = [
+const orders = [
   { id: "ID 82931", customer: "@Ivan", amount: "€124.55", status: "Принято", icon: "/images/numbers/order-icon-wait.svg", tone: "gold" },
   { id: "ID 20471", customer: "@Alex", amount: "€56.45", status: "Отправка", icon: "/images/numbers/order-icon-sent.svg", tone: "blue" },
   { id: "ID 55109", customer: "@Anna", amount: "€96.50", status: "Оплачено", icon: "/images/numbers/order-icon-done.svg", tone: "violet" },
@@ -38,6 +30,7 @@ const stats: StatCard[] = [
     icon: "/images/numbers/icon-speed.svg",
     accent: "#9999ff",
     delay: "0.3s",
+    hasBgDots: true,
   },
   {
     value: 24,
@@ -47,6 +40,7 @@ const stats: StatCard[] = [
     icon: "/images/numbers/icon-24-7.svg",
     accent: "#98cbff",
     delay: "0.36s",
+    hasBgDots: true,
   },
   {
     value: 94,
@@ -56,6 +50,7 @@ const stats: StatCard[] = [
     icon: "/images/numbers/icon-referral.svg",
     accent: "#a1e5e5",
     delay: "0.42s",
+    hasBgDots: true,
   },
 ];
 
@@ -119,9 +114,10 @@ function StoreGraphic() {
   );
 }
 
-function StatCard({ value, suffix, title, detail, icon, accent, delay }: StatCard) {
+function StatCard({ value, suffix, title, detail, icon, accent, delay, hasBgDots }: StatCard) {
   return (
     <article className="numbers-card numbers-card--stat numbers-reveal" style={{ "--numbers-accent": accent, "--numbers-delay": delay } as CSSProperties}>
+      {hasBgDots ? <span className="numbers-card__bg-dots" aria-hidden="true" /> : null}
       <div className="numbers-card__dots" aria-hidden="true" />
       <div className="numbers-card__icon-glow" aria-hidden="true" />
       <div className="numbers-card__stat-head">

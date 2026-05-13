@@ -35,8 +35,14 @@ yarn-error.log*
 !.env.example
 
 # local dev server logs
+.next-dev.log
 .next-dev-*.log
 .next-dev-*.err.log
+.codex-next-dev.log
+.codex-next-dev.err.log
+$err
+$log
+.codex-temp/
 
 # vercel
 .vercel

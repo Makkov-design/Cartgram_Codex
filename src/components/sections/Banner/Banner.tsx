@@ -90,22 +90,12 @@ export function Banner() {
 
             <div className="banner-card__visual" aria-hidden="true">
               <video
-                className="banner-card__visual-desktop"
+                className="banner-card__visual-video"
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="metadata"
-              >
-                <source src="/videos/banner_video.mp4" type="video/mp4" />
-              </video>
-              <video
-                className="banner-card__visual-mobile"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
+                preload="auto"
               >
                 <source src="/videos/banner_video.mp4" type="video/mp4" />
               </video>

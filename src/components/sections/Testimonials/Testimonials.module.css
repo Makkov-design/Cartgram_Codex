@@ -30,8 +30,9 @@
   flex: 0 0 clamp(416px, 32.73vw, 576px);
   min-height: var(--testimonials-card-height);
   overflow: hidden;
-  border-radius: 40px;
-  background: #050507;
+  border: 2px solid #17171a;
+  border-radius: 32px;
+  background: #0b0b0d;
 }
 
 .isVisible .info,
@@ -52,23 +53,14 @@
 }
 
 .infoPattern {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18) 0 2px, transparent 2.2px) 0 0 / 14px 14px,
-    radial-gradient(circle at 46% 74%, rgba(153, 153, 255, 0.12), transparent 30%),
-    linear-gradient(180deg, rgba(230, 230, 242, 0.05), rgba(230, 230, 242, 0) 32%);
-  mask-image: radial-gradient(circle at 48% 34%, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 40%, transparent 78%);
-  -webkit-mask-image: radial-gradient(circle at 48% 34%, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 40%, transparent 78%);
-  opacity: 0.9;
-  pointer-events: none;
+  display: none;
 }
 
 .infoText {
   position: relative;
   z-index: 1;
   display: flex;
-  width: min(100%, 496px);
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
@@ -76,9 +68,9 @@
 }
 
 .quoteIcon {
-  width: 64px;
-  height: 64px;
-  color: #3f3f4c;
+  display: block;
+  width: 100px;
+  height: 100px;
 }
 
 .infoText h2,
@@ -97,7 +89,7 @@
 
 .infoText p {
   margin: 0;
-  max-width: 336px;
+  width: 100%;
   font-size: 20px;
   line-height: 1.4;
   color: var(--color-text-muted);
@@ -124,6 +116,7 @@
 }
 
 .navButton {
+  position: relative;
   display: inline-flex;
   flex: 0 0 64px;
   align-items: center;
@@ -132,28 +125,40 @@
   height: 64px;
   padding: 0;
   border: 0;
-  border-radius: 999px;
+  border-radius: 16px;
   background: transparent;
   color: rgba(230, 230, 242, 0.92);
+  cursor: pointer;
   transition:
+    background 0.28s ease,
+    box-shadow 0.28s ease,
     color 0.28s ease,
     opacity 0.28s ease,
     transform 0.28s ease;
 }
 
 .navButton:disabled {
-  opacity: 0.35;
+  cursor: default;
+  opacity: 0.1;
 }
 
 .navButton:not(:disabled):hover {
-  color: #fff;
-  transform: translateY(-1px);
+  background: #17171a;
+  box-shadow: none;
+  color: var(--color-text-primary);
+  transform: none;
+}
+
+.navButton:not(:disabled):active {
+  background: #2c2c33;
+  transform: none;
 }
 
 .navIconLeft,
 .navIconRight {
   width: 40px;
   height: 40px;
+  transition: transform 0.28s ease;
 }
 
 .navIconLeft {
@@ -368,6 +373,13 @@
   height: 40px;
 }
 
+.avatarImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .avatarInitials {
   display: inline-flex;
   align-items: center;
@@ -431,7 +443,12 @@
   }
 
   .infoText {
-    width: min(100%, 336px);
+    width: 100%;
+  }
+
+  .quoteIcon {
+    width: 64px;
+    height: 64px;
   }
 
   .infoText h2 {

@@ -2,8 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cartgram Landing Page",
-  description: "Cartgram — CRM landing page for Telegram e-commerce",
+  title: "Cartgram — CRM для продаж в Telegram",
+  description: "Cartgram — современная CRM-система для управления продажами в Telegram. Автоматизируйте заказы, покупателей и аналитику прямо внутри мессенджера.",
+  keywords: ["cartgram", "crm", "telegram", "продажи", "интернет-магазин", "бот"],
+  openGraph: {
+    title: "Cartgram — CRM для продаж в Telegram",
+    description: "Современная CRM для управления продажами в Telegram",
+    locale: "ru_RU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cartgram — CRM для продаж в Telegram",
+    description: "Современная CRM для управления продажами в Telegram",
+  },
 };
 
 const revealScript = `

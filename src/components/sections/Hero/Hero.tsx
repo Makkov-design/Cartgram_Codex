@@ -208,7 +208,7 @@ export function Hero() {
               </Button>
               <Button
                 as="a"
-                href="#hero-demo"
+                href="#how-it-works"
                 size="large"
                 variant="secondary"
               >

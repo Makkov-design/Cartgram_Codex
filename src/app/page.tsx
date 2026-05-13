@@ -13,8 +13,6 @@ import { Steps } from "@/components/sections/Steps/Steps";
 import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
 import { WhyCartgram } from "@/components/sections/WhyCartgram/WhyCartgram";
 
-const placeholderSections: string[] = [];
-
 export default function Home() {
   return (
     <main className="bg-page text-primary">
@@ -68,10 +66,6 @@ export default function Home() {
       </section>
 
       <Footer />
-
-      {placeholderSections.map((id) => (
-        <section key={id} id={id} aria-hidden="true" className="h-px" />
-      ))}
     </main>
   );
 }

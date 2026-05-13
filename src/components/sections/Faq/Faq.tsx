@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/buttons/Button";
 import styles from "./Faq.module.css";
@@ -70,17 +71,14 @@ const FAQ_ITEMS: FaqItem[] = [
 
 function HelpIcon() {
   return (
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={styles.iconSvg}>
-      <circle cx="24" cy="24" r="15.5" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M19.75 18.25C20.934 16.771 22.846 15.875 24.981 15.875C28.57 15.875 31.48 18.411 31.48 21.539C31.48 23.575 30.248 25.01 28.656 25.917C27.096 26.806 25.625 27.767 25.625 29.75V31"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="25.625" cy="35.625" r="1.625" fill="currentColor" />
-    </svg>
+    <Image
+      src="/images/faq/help-icon.svg"
+      alt=""
+      aria-hidden="true"
+      width={48}
+      height={48}
+      className={styles.iconSvg}
+    />
   );
 }
 
