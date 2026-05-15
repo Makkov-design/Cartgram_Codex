@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HIW_ASSET = "/images/how-it-works";
+const PROMO_VIDEO = "/videos/cartgram-promo.mp4";
 
 const checkItems = [
   "Заказы и статусы обновляются автоматически",
@@ -64,7 +65,7 @@ function PhoneDemo() {
   );
 }
 
-function MacBookDemo() {
+function MacBookDemo({ onPlay }: { onPlay: () => void }) {
   return (
     <div className="hiw-macbook" aria-label="Cartgram CRM dashboard demo">
       <div className="hiw-macbook__screen-frame">
@@ -85,7 +86,12 @@ function MacBookDemo() {
           />
           <div className="hiw-macbook__shade" />
           <div className="hiw-macbook__dots" />
-          <button className="hiw-play" type="button" aria-label="Посмотреть демо">
+          <button
+            className="hiw-play"
+            type="button"
+            aria-label="Посмотреть промо-ролик"
+            onClick={onPlay}
+          >
             <Image src={`${HIW_ASSET}/play-button.svg`} alt="" width={112} height={112} />
           </button>
         </div>
@@ -127,6 +133,7 @@ function CheckCard({ children }: { children: string }) {
 
 export function HowItWorks() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [isPromoOpen, setIsPromoOpen] = useState(false);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -174,6 +181,26 @@ export function HowItWorks() {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isPromoOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsPromoOpen(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isPromoOpen]);
 
   return (
     <section ref={sectionRef} className="hiw-section container-1920 px-20">
@@ -247,11 +274,47 @@ export function HowItWorks() {
             </div>
 
             <div className="hiw-inner-reveal">
-              <MacBookDemo />
+              <MacBookDemo onPlay={() => setIsPromoOpen(true)} />
             </div>
           </article>
         </div>
       </div>
+
+      {isPromoOpen ? (
+        <div
+          className="hiw-video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Промо-ролик Cartgram"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setIsPromoOpen(false);
+            }
+          }}
+        >
+          <div className="hiw-video-modal__panel">
+            <button
+              className="hiw-video-modal__close"
+              type="button"
+              aria-label="Закрыть промо-ролик"
+              onClick={() => setIsPromoOpen(false)}
+            >
+              <span aria-hidden="true" />
+            </button>
+            <div className="hiw-video-modal__clip">
+              <video
+                className="hiw-video-modal__video"
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+              >
+                <source src={PROMO_VIDEO} type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

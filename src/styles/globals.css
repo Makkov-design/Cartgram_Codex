@@ -860,6 +860,114 @@ main {
   filter: saturate(1.18) brightness(1.06);
 }
 
+.hiw-video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 5, 7, 0.82);
+  padding: 32px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hiw-video-modal__panel {
+  position: relative;
+  width: min(1180px, 100%);
+  border-radius: 24px;
+  background: #0b0b0d;
+  box-shadow: 0 32px 120px rgba(0, 0, 0, 0.64);
+  outline: 0;
+}
+
+.hiw-video-modal__clip {
+  overflow: hidden;
+  border-radius: 24px;
+  background: #050507;
+}
+
+.hiw-video-modal__video {
+  display: block;
+  width: calc(100% + 4px);
+  max-width: none;
+  margin: -2px;
+  height: auto;
+  max-height: calc(100vh - 92px);
+  border: 0;
+  border-radius: 0;
+  background: #050507;
+  outline: 0;
+}
+
+.hiw-video-modal__close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  z-index: 2;
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(230, 230, 242, 0.1);
+  border-radius: 999px;
+  background: #17171a;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.hiw-video-modal__close::before,
+.hiw-video-modal__close::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.hiw-video-modal__close::before {
+  transform: rotate(45deg);
+}
+
+.hiw-video-modal__close::after {
+  transform: rotate(-45deg);
+}
+
+.hiw-video-modal__close:hover {
+  background: #24242a;
+  transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .hiw-video-modal {
+    padding: 16px;
+  }
+
+  .hiw-video-modal__panel,
+  .hiw-video-modal__clip,
+  .hiw-video-modal__video {
+    border-radius: 16px;
+  }
+
+  .hiw-video-modal__video {
+    max-height: calc(100vh - 64px);
+  }
+
+  .hiw-video-modal__close {
+    top: -14px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .hiw-macbook__notch {
   position: absolute;
   top: 15px;
