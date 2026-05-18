@@ -203,12 +203,18 @@ export function Hero() {
             </p>
 
             <div ref={actionsRef} className="hero-copy-enter hero-actions flex items-center gap-4">
-              <Button size="large" variant="primary" icon="arrow">
+              <Button
+                as="a"
+                href="https://cartgram.org/register"
+                size="large"
+                variant="primary"
+                icon="arrow"
+              >
                 Открыть магазин
               </Button>
               <Button
                 as="a"
-                href="#how-it-works"
+                href="https://cartgram.org/register"
                 size="large"
                 variant="secondary"
               >

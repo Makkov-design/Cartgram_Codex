@@ -227,7 +227,14 @@ function PlanCard({ plan, billing, index }: { plan: Plan; billing: BillingMode; 
         <p className="prices-card__payment">{isYearly ? yearlyTotal(plan) : "ежемесячная оплата"}</p>
         {isYearly ? <p className="prices-card__saving">Экономия 20%</p> : null}
       </div>
-      <Button className="prices-card__cta" variant="primary" size="large" icon="arrow">
+      <Button
+        as="a"
+        href="https://cartgram.org/register"
+        className="prices-card__cta"
+        variant="primary"
+        size="large"
+        icon="arrow"
+      >
         Подключить {plan.name}
       </Button>
       <p className={`prices-card__label ${plan.key === "start" ? "prices-card__label--base" : "prices-card__label--accent"}`}>
@@ -401,6 +408,7 @@ export function Prices() {
               const inheritedPlan = plan.key === "plus" ? "Start" : plan.key === "prime" ? "Plus" : "Prime";
               const labelText = plan.key === "start" ? "Что входит:" : `Включено всё из ${inheritedPlan} +`;
               const isYearly = billing === "yearly";
+              const mobileFeatures = plan.key === "start" ? plan.features : plan.features.slice(1);
 
               return (
                 <div key={`mobile-${plan.key}`} className="prices-mobile-slider__slide" data-plan-slide={plan.key}>
@@ -434,7 +442,14 @@ export function Prices() {
                       </div>
                     </div>
 
-                    <Button className="prices-card__cta" variant="primary" size="large" icon="arrow">
+                    <Button
+                      as="a"
+                      href="https://cartgram.org/register"
+                      className="prices-card__cta"
+                      variant="primary"
+                      size="large"
+                      icon="arrow"
+                    >
                       Подключить {plan.name}
                     </Button>
 
@@ -443,7 +458,7 @@ export function Prices() {
                         {labelText}
                       </p>
                       <ul>
-                        {plan.features.map((feature, featureIndex) => (
+                        {mobileFeatures.map((feature, featureIndex) => (
                           <li key={`mobile-${plan.key}-${featureIndex}`}>
                             <CheckIcon />
                             <span>{feature}</span>
@@ -463,7 +478,14 @@ export function Prices() {
                     Enterprise <span>[Custom pricing]</span>
                   </h3>
                   <p>Индивидуальные решения для крупных проектов и масштабируемых e-commerce систем.</p>
-                  <Button className="prices-mobile-enterprise__cta" variant="primary" size="large" icon="arrow">
+                  <Button
+                    as="a"
+                    href="https://cartgram.org/register"
+                    className="prices-mobile-enterprise__cta"
+                    variant="primary"
+                    size="large"
+                    icon="arrow"
+                  >
                     Подключить Enterprise
                   </Button>
                 </div>
@@ -494,7 +516,14 @@ export function Prices() {
               Enterprise <span>[Custom pricing]</span>
             </h3>
             <p>Индивидуальные решения для крупных проектов и масштабируемых e-commerce систем.</p>
-            <Button className="prices-enterprise__cta" variant="primary" size="large" icon="arrow">
+            <Button
+              as="a"
+              href="https://cartgram.org/register"
+              className="prices-enterprise__cta"
+              variant="primary"
+              size="large"
+              icon="arrow"
+            >
               Подключить Enterprise
             </Button>
           </div>

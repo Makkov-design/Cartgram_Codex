@@ -174,7 +174,13 @@ function DesktopStepCard({
 
       {step === 1 ? (
         <div className="steps-card__action">
-          <Button className="steps-card__button" size="large" icon="arrow">
+          <Button
+            as="a"
+            href="https://cartgram.org/register"
+            className="steps-card__button"
+            size="large"
+            icon="arrow"
+          >
             Создать магазин
           </Button>
         </div>
@@ -212,7 +218,13 @@ function MobileStepCard({
       <p>{item.description}</p>
 
       {step === 1 ? (
-        <Button className="steps-mobile-card__button" size="large" icon="arrow">
+        <Button
+          as="a"
+          href="https://cartgram.org/register"
+          className="steps-mobile-card__button"
+          size="large"
+          icon="arrow"
+        >
           Создать магазин
         </Button>
       ) : null}

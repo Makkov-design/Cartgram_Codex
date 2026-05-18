@@ -42,9 +42,19 @@ export function Header() {
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
+    const onPageShow = () => {
+      setIsEntered(true);
+      onScroll();
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("pageshow", onPageShow);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pageshow", onPageShow);
+    };
   }, []);
 
   useEffect(() => {
@@ -154,12 +164,12 @@ export function Header() {
           style={{ transitionDelay: "320ms" }}
         >
           <div className="hidden sm:block">
-            <Button size="small" variant="primary">
+            <Button as="a" href="https://cartgram.org/register" size="small" variant="primary">
               Регистрация
             </Button>
           </div>
           <a
-            href="#hero"
+            href="https://cartgram.org/login"
             aria-label="Вход"
             className="group hidden h-10 w-10 items-center justify-center gap-2 rounded-[8px] bg-[rgba(230,230,242,0.07)] text-[16px] font-medium leading-none text-secondary transition-all duration-300 ease-out hover:rounded-[24px] hover:bg-[rgba(230,230,242,0.12)] md:inline-flex md:w-[147px] md:px-6"
           >
@@ -242,11 +252,18 @@ export function Header() {
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <Button className="w-full" size="large" variant="primary">
+            <Button
+              as="a"
+              href="https://cartgram.org/register"
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full"
+              size="large"
+              variant="primary"
+            >
               Регистрация
             </Button>
             <a
-              href="#hero"
+              href="https://cartgram.org/login"
               onClick={() => setIsMenuOpen(false)}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-[14px] border border-[rgba(230,230,242,0.08)] bg-[rgba(230,230,242,0.07)] px-4 text-[16px] font-medium leading-none text-secondary transition-all duration-300 ease-out hover:border-[rgba(152,203,255,0.18)] hover:bg-[rgba(230,230,242,0.12)]"
             >

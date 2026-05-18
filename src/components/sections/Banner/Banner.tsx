@@ -74,7 +74,20 @@ export function Banner() {
           </div>
 
           <div className="banner-card__inner">
-            <div className="banner-card__content">
+            <div
+              className="banner-card__content"
+              role="link"
+              tabIndex={0}
+              onClick={() => {
+                window.location.href = "https://cartgram.org/register";
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  window.location.href = "https://cartgram.org/register";
+                }
+              }}
+            >
               <h2>
                 Запусти магазин в Telegram Mini-App за 5 минут{" "}
                 <span>без кода и разработчиков</span>

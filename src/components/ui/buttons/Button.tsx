@@ -21,9 +21,9 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--color-bg-inverted)] text-[var(--color-text-inverted)] hover:rounded-[24px]",
+    "bg-[var(--color-bg-inverted)] !text-[var(--color-text-inverted)] hover:rounded-[24px]",
   secondary:
-    "bg-[rgba(230,230,242,0.07)] text-[var(--color-text-secondary)] hover:bg-[rgba(230,230,242,0.12)] hover:rounded-[24px]",
+    "bg-[rgba(230,230,242,0.07)] !text-[var(--color-text-secondary)] hover:bg-[rgba(230,230,242,0.12)] hover:rounded-[24px]",
 };
 
 export function Button({
@@ -33,6 +33,7 @@ export function Button({
   href,
   icon = "none",
   size = "large",
+  style,
   variant = "primary",
   ...rest
 }: ButtonProps) {
@@ -44,6 +45,13 @@ export function Button({
   ]
     .filter(Boolean)
     .join(" ");
+  const mergedStyle = {
+    color:
+      variant === "primary"
+        ? "var(--color-text-inverted)"
+        : "var(--color-text-secondary)",
+    ...style,
+  };
 
   const content = (
     <span className="flex flex-nowrap items-center gap-2 whitespace-nowrap">
@@ -59,14 +67,14 @@ export function Button({
 
   if (as === "a") {
     return (
-      <a className={classes} href={href} {...rest}>
+      <a className={classes} href={href} style={mergedStyle} {...rest}>
         {content}
       </a>
     );
   }
 
   return (
-    <button className={classes} type="button" {...rest}>
+    <button className={classes} type="button" style={mergedStyle} {...rest}>
       {content}
     </button>
   );
